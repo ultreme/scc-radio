@@ -29,7 +29,23 @@ end
 
 
 # MIXS
-default = mksafe(audio_to_stereo(playlist.safe(reload=60, "/playlists/failures/", mode="random")))
+default = mksafe(
+    rewrite_metadata(
+        [
+            ("artist", "Salut c'est cool"),
+            ("title", "Maintenance en cours"),
+            ("comment", "http://www.salutcestcool.com/")
+            ],
+        audio_to_stereo(
+            playlist.safe(
+                reload=60,
+                "/playlists/failures/",
+                mode="random"
+                )
+            )
+        )
+    )
+
 harbor_input = input.harbor("rscc.main", port=5001, password=harbor_password)
 input = mksafe(fallback(track_sensitive=false, [ harbor_input, default ]))
 

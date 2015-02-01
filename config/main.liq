@@ -25,7 +25,22 @@ end
 
 # INPUTS
 clock = mksafe(audio_to_stereo(playlist.safe(reload=60, "/playlists/singles/", mode="random")))
-jingles = mksafe(audio_to_stereo(playlist.safe(reload=60, "/playlists/jingles", mode="random")))
+jingles = mksafe(
+    rewrite_metadata(
+        [
+            ("artist", "Salut c'est cool"),
+            ("title","Jingle (Salut c'est cool)"),
+            ("comment","http://www.salutcestcool.com/")
+            ],
+        audio_to_stereo(
+            playlist.safe(
+                reload=60,
+                "/playlists/jingles",
+                mode="random"
+                )
+            )
+        )
+    )
 songs = mksafe(audio_to_stereo(playlist.safe(reload=60, "/playlists/songs", mode="random")))
 live = audio_to_stereo(
     stretch(
