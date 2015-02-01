@@ -79,7 +79,8 @@ live = audio_to_stereo(
 
 
 # MIXS
-input = random(weights=[1,1], [jingles, songs])
+#input = random(weights=[1,1], [jingles, songs])
+input = fade(jingles,songs)
 input = add([input, switch([({0m0s}, clock)])])
 #input = add([input, amplify(5., override="replay_gain", live)])
 #input = fallback(track_sensitive=true, transitions=[custofade], [ input ])
