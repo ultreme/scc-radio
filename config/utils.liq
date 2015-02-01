@@ -1,3 +1,26 @@
+def fade(jingles,s)
+  fade_in = 2.
+  fade_out = 2.
+  start_next = 2.
+  j = random(
+      id="jrand",
+      weights=[1,5],
+      [jingles, blank(id="bbb",duration=1.)])
+  def fader(from,to)
+    from = fade.out(duration=fade_out,from)
+    to = fade.in(duration=fade_in,to)
+    add(
+        normalize=false,
+        [
+            to,
+            sequence([ j, fallback([]) ]),
+            from
+            ]
+        )
+    end
+  cross(duration=start_next,fader,s)
+end
+
 def audio_process(s)
   gain = interactive.float("compress.gain",3.)
   ratio = 3. # interactive.float("compress.ratio",3.)

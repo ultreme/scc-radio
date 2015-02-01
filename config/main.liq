@@ -24,7 +24,7 @@ end
 
 
 # INPUTS
-clock = mksafe(audio_to_stereo(playlist.safe(reload=60, "/playlists/singles/", mode="random")))
+clock = mksafe(audio_to_stereo(playlist.safe(reload=3600, "/playlists/singles/", mode="random")))
 jingles = mksafe(
     rewrite_metadata(
         [
@@ -34,24 +34,44 @@ jingles = mksafe(
             ],
         audio_to_stereo(
             playlist.safe(
-                reload=60,
+                reload=1800,
                 "/playlists/jingles",
                 mode="random"
                 )
             )
         )
     )
-songs = mksafe(audio_to_stereo(playlist.safe(reload=60, "/playlists/songs", mode="random")))
+songs = mksafe(
+    audio_to_stereo(
+        rewrite_metadata(
+            [
+                ("title", "$(title) (radio Salut c'est cool)"),
+                ("comment", "http://www.salutcestcool.com")
+                ],
+            playlist.safe(
+                reload=600,
+                "/playlists/songs",
+                mode="random"
+                )
+            )
+        )
+    )
 live = audio_to_stereo(
-    stretch(
-        ratio=interactive.float("test", 1.005),
-        input.harbor(
-            "rscc.live",
-            id="rscc.live",
-            port=5001,
-            password="LIVE_PASSWORD",
-            user="source",
-            logfile="/tmp/harbor.log"
+    rewrite_metadata(
+        [
+            ("title", "$(title) (LIVE - Salut c'est cool)"),
+            ("comment", "http://www.salutcestcool.com")
+            ],
+        stretch(
+            ratio=interactive.float("test", 1.005),
+            input.harbor(
+                "rscc.live",
+                id="rscc.live",
+                port=5001,
+                password="LIVE_PASSWORD",
+                user="source",
+                logfile="/tmp/harbor.log"
+                )
             )
         )
     )
