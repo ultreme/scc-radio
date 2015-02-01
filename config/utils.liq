@@ -28,6 +28,11 @@ def fade(jingles,s)
 end
 
 
+def my_getenv(key) =
+  list.hd(get_process_lines("/bin/sh -c 'echo $#{key}'"))
+end
+
+
 def audio_process(s)
   gain = interactive.float("compress.gain",3.)
   ratio = 3. # interactive.float("compress.ratio",3.)

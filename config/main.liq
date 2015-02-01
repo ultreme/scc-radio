@@ -61,7 +61,7 @@ live = audio_to_stereo(
                 "rscc.live",
                 id="rscc.live",
                 port=5001,
-                password="LIVE_PASSWORD",
+                password=my_getenv("LIVE_PASSWORD"),
                 user="source",
                 logfile="/tmp/harbor.log"
                 )
@@ -90,9 +90,9 @@ mix = on_metadata(feedback, mix)
 # OUTPUTS
 mix = mksafe(mix)
 output.icecast(
-    host="HARBOR_HOST",
-    port=HARBOR_PORT,
-    password="HARBOR_PASSWORD",
+    password=my_getenv("HARBOR_PASSWORD"),
+    host=my_getenv('BROADCAST_PORT_5001_TCP_ADDR'),
+    port=int_of_string(my_getenv('BROADCAST_PORT_5001_TCP_PORT')),
     %mp3(bitrate=128),
     mount="rscc.main",
     mix

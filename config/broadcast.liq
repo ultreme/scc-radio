@@ -14,8 +14,7 @@ set("log.file.path", "/tmp/broadcast.log")
 set("audio.converter.samplerate.libsamplerate.quality","best")
 set("buffering.path","/tmp")
 set("decoding.buffer_length",10.)
-icecast_password="ICECAST_PASSWORD"
-harbor_password="HARBOR_PASSWORD"
+icecast_password=my_getenv("ICECAST_PASSWORD")
 
 
 # FUNCTIONS
@@ -46,7 +45,7 @@ default = mksafe(
         )
     )
 
-harbor_input = input.harbor("rscc.main", port=5001, password=harbor_password)
+harbor_input = input.harbor("rscc.main", port=5001, password=my_getenv("HARBOR_PASSWORD"))
 input = mksafe(fallback(track_sensitive=false, [ harbor_input, default ]))
 
 
