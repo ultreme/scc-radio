@@ -1,3 +1,9 @@
+def custofade(previous, next)
+  #source.skip(next)
+  add([fade.initial(duration=2., type="exp", next), previous])
+end
+
+
 def fade(jingles,s)
   fade_in = 2.
   fade_out = 2.
@@ -20,6 +26,7 @@ def fade(jingles,s)
     end
   cross(duration=start_next,fader,s)
 end
+
 
 def audio_process(s)
   gain = interactive.float("compress.gain",3.)

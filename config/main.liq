@@ -16,13 +16,6 @@ set("buffering.path","/tmp")
 set("decoding.buffer_length",10.)
 
 
-# FUNCTIONS
-def custofade(previous, next)
-  #source.skip(next)
-  add([fade.initial(duration=2., type="exp", next), previous])
-end
-
-
 # INPUTS
 clock = mksafe(audio_to_stereo(playlist.safe(reload=3600, "/playlists/singles/", mode="random")))
 jingles = mksafe(
@@ -79,25 +72,25 @@ live = audio_to_stereo(
 
 
 # MIXS
-#input = random(weights=[1,1], [jingles, songs])
-input = fade(jingles,songs)
-input = add([input, switch([({0m0s}, clock)])])
-#input = add([input, amplify(5., override="replay_gain", live)])
-#input = fallback(track_sensitive=true, transitions=[custofade], [ input ])
-#multi_live = add([live, live2])
-#input = fallback(track_sensitive=false, [multi_live,input])
-input = fallback(track_sensitive=false, [live, input])
+#mix = random(weights=[1,1], [jingles, songs])
+mix = fade(jingles,songs)
+mix = add([mix, switch([({0m0s}, clock)])])
+#mix = add([mix, amplify(5., override="replay_gain", live)])
+#mix = fallback(track_sensitive=true, transitions=[custofade], [ mix ])
+#mix = fallback(track_sensitive=false, [multi_live,mix])
+mix = fallback(track_sensitive=false, [live, mix])
+mix = store_metadata(size=20,id="history",mix)
 
 
 # OUTPUTS
-input = mksafe(input)
+mix = mksafe(mix)
 output.icecast(
     host="HARBOR_HOST",
     port=HARBOR_PORT,
     password="HARBOR_PASSWORD",
     %mp3(bitrate=128),
     mount="rscc.main",
-    input
+    mix
     )
 
 title = '%Y-%m-%d, %H:%M:%S - $(if $(artist), "$(artist)", "Artiste inconnu") - $(if $(title),"$(title)", "Emission inconnue")'
