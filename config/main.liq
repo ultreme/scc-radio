@@ -80,6 +80,11 @@ mix = add([mix, switch([({0m0s}, clock)])])
 #mix = fallback(track_sensitive=false, [multi_live,mix])
 mix = fallback(track_sensitive=false, [live, mix])
 mix = store_metadata(size=20,id="history",mix)
+def feedback(metadata)
+   system("echo "^ quote(metadata["artist"] ^" - "^ metadata["title"]) ^" > /data/latest.txt")
+   system("echo "^ quote(metadata["artist"] ^" - "^ metadata["title"]) ^" >> /data/history.txt")
+end
+mix = on_metadata(feedback, mix)
 
 
 # OUTPUTS
