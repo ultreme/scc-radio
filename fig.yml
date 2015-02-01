@@ -1,0 +1,50 @@
+main:
+  image: moul/liquidsoap
+  volumes:
+  - config:/config
+  - playlists:/playlists
+  - data:/data
+  command: /start.sh /config/main.liq
+  environment:
+  - HARBOR_PASSWORD
+  - LIVE_PASSWORD
+  links:
+  - broadcast
+  ports:
+  - 8022:5001
+
+broadcast:
+  image: moul/liquidsoap
+  volumes:
+  - config:/config
+  command: /start.sh /config/broadcast.liq
+  environment:
+  - HARBOR_PASSWORD
+  - ICECAST_PASSWORD
+  links:
+  - icecast1
+  - icecast2
+
+icecast1:
+  image: moul/icecast
+  environment:
+  - SOURCE_PASSWORD
+  - ADMIN_PASSWORD
+  - PASSWORD
+  - RELAY_PASSWORD
+  ports:
+  - 9100:8000
+
+icecast2:
+  image: moul/icecast
+  ports:
+  - 9200:8000
+  environment:
+  - SOURCE_PASSWORD
+  - ADMIN_PASSWORD
+  - PASSWORD
+  - RELAY_PASSWORD
+
+
+# BTSYNC
+# FTP
