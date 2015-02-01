@@ -21,9 +21,9 @@ end
 
 
 # INPUTS
-clock = mksafe(audio_to_stereo(playlist(reload=60, "/playlists/singles/", mode="random")))
-jingles = mksafe(audio_to_stereo(playlist(reload=60, "/playlists/jingles", mode="random")))
-songs = mksafe(audio_to_stereo(playlist(reload=60, "/playlists/songs", mode="random")))
+clock = mksafe(audio_to_stereo(playlist.safe(reload=60, "/playlists/singles/", mode="random")))
+jingles = mksafe(audio_to_stereo(playlist.safe(reload=60, "/playlists/jingles", mode="random")))
+songs = mksafe(audio_to_stereo(playlist.safe(reload=60, "/playlists/songs", mode="random")))
 live = audio_to_stereo(
     stretch(
         ratio=interactive.float("test", 1.005),
