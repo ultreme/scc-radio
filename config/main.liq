@@ -25,13 +25,16 @@ clock = mksafe(audio_to_stereo(playlist(reload=60, "/playlists/singles/", mode="
 jingles = mksafe(audio_to_stereo(playlist(reload=60, "/playlists/jingles", mode="random")))
 songs = mksafe(audio_to_stereo(playlist(reload=60, "/playlists/songs", mode="random")))
 live = audio_to_stereo(
-    input.harbor(
-        "rscc.live",
-        id="rscc.live",
-        port=5001,
-        password="LIVE_PASSWORD",
-        user="source",
-        logfile="/tmp/harbor.log"
+    stretch(
+        ratio=interactive.float("test", 1.005),
+        input.harbor(
+            "rscc.live",
+            id="rscc.live",
+            port=5001,
+            password="LIVE_PASSWORD",
+            user="source",
+            logfile="/tmp/harbor.log"
+            )
         )
     )
 #live = strip_blank(live, length=10., threshold=-50.)
