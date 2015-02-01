@@ -45,8 +45,9 @@ output.icecast(host="HARBOR_HOST",
                input)
 
 
-title = '$(if $(title),"$(title)", "Emission inconnue")$(if $(artist), " par $(artist)") - %m-%d-%Y, %H:%M:%S'
-output.file(%vorbis, reopen_on_metadata=true,
+#title = '$(if $(title),"$(title)", "Emission inconnue")$(if $(artist), " par $(artist)") - %m-%d-%Y, %H:%M:%S'
+title = '%Y-%m-%d, %H:%M:%S - $(if $(artist), "$(artist)", "Artiste inconnu") - $(if $(title),"$(title)", "Emission inconnue")'
+output.file(%vorbis, reopen_on_metadata=false,
             fallible=true,
             "/playlists/emissions/" ^ title ^ ".ogg",
             live)
