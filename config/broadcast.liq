@@ -1,6 +1,9 @@
 #!/usr/bin/env liquidsoap
 
 
+%include "utils.liq"
+
+
 # CONFIGS
 set("log.file", true)
 set("log.stdout", true)
@@ -13,6 +16,7 @@ set("buffering.path","/tmp")
 set("decoding.buffer_length",10.)
 icecast_password="ICECAST_PASSWORD"
 harbor_password="HARBOR_PASSWORD"
+
 
 # FUNCTIONS
 scc_out = output.icecast(description="La radio de les salut c'set cool", genre="Documentaires", url="http://www.salutcestcool.com/")
@@ -29,6 +33,9 @@ default = mksafe(audio_to_stereo(playlist.safe(reload=60, "/playlists/failures/"
 harbor_input = input.harbor("rscc.main", port=5001, password=harbor_password)
 input = mksafe(fallback(track_sensitive=false, [ harbor_input, default ]))
 
+
+# NORMALIZE
+input = audio_process(input)
 
 
 # OUTPUTS

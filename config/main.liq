@@ -1,6 +1,9 @@
 #!/usr/bin/env liquidsoap
 
 
+%include "utils.liq"
+
+
 # CONFIGS
 set("log.file", true)
 set("log.stdout", true)
