@@ -56,7 +56,7 @@ live = audio_to_stereo(
             ("comment", "http://www.salutcestcool.com")
             ],
         stretch(
-            ratio=interactive.float("test", 1.005),
+            ratio=interactive.float("test", 1.00005),
             input.harbor(
                 "rscc.live",
                 id="rscc.live",
