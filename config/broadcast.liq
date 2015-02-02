@@ -18,7 +18,7 @@ icecast_password=my_getenv("ICECAST_PASSWORD")
 
 
 # FUNCTIONS
-scc_out = output.icecast(description="La radio de les salut c'set cool", genre="Documentaires", url="http://www.salutcestcool.com/")
+scc_out = output.icecast(description="La radio de les salut c'est cool", genre="Documentaires", url="http://www.salutcestcool.com/")
 output_balrog.icecast = scc_out(host="212.83.158.125", port=8000, password=icecast_password)
 output_hobbit.icecast = scc_out(host="212.129.20.90", port=8000, password=icecast_password)
 def outputs(encoder, ~mount, input)
