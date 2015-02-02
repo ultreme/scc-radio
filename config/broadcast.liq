@@ -55,8 +55,8 @@ input = audio_process(input)
 
 # OUTPUTS
 outputs(%mp3(bitrate=64), mount="/salut-radio-64.mp3", input)
+outputs(%mp3(bitrate=96), mount="/salut-radio-96.mp3", input)
 outputs(%mp3(bitrate=128), mount="/salut-radio-128.mp3", input)
-outputs(%mp3(bitrate=192), mount="/salut-radio-192.mp3", input)
-outputs(%mp3(bitrate=256), mount="/salut-radio-256.mp3", input)
-outputs(%aac(bitrate=160), mount="/salut-radio.aac", input)
+outputs(%mp3(bitrate=160), mount="/salut-radio-160.mp3", input)
+outputs(%aac(bitrate=128), mount="/salut-radio-128.aac", input)
 outputs(%vorbis, mount="/salut-radio.ogg", input)
