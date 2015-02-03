@@ -17,10 +17,11 @@ broadcast:
   image: moul/liquidsoap
   volumes:
   - config:/config
+  - playlists/failures:/playlists/failures
   command: /supervisor.sh liquidsoap /config/broadcast.liq
   environment:
   - HARBOR_PASSWORD
-  - ICECAST_PASSWORD
+  - SOURCE_PASSWORD
   links:
   - icecast
 
@@ -33,17 +34,6 @@ icecast:
   - RELAY_PASSWORD
   ports:
   - 9100:8000
-
-#icecast2:
-#  image: moul/icecast
-#  ports:
-#  - 9200:8000
-#  environment:
-#  - SOURCE_PASSWORD
-#  - ADMIN_PASSWORD
-#  - PASSWORD
-#  - RELAY_PASSWORD
-
 
 # BTSYNC
 # FTP

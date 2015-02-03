@@ -11,8 +11,7 @@ ENV ?=			HARBOR_PASSWORD=internal \
 
 
 dev:	chmod broadcast
-	$(ENV) fig up -d --no-deps main
-	fig logs main
+	$(ENV) fig up --no-deps main
 
 
 broadcast:
@@ -24,4 +23,4 @@ kill:
 
 
 chmod:
-	chmod 777 data playlists playlists/emissions
+	chmod -R 777 data playlists

@@ -91,8 +91,8 @@ mix = on_metadata(feedback, mix)
 mix = mksafe(mix)
 output.icecast(
     password=my_getenv("HARBOR_PASSWORD"),
-    host=my_getenv('BROADCAST_PORT_5001_TCP_ADDR'),
-    port=int_of_string(my_getenv('BROADCAST_PORT_5001_TCP_PORT')),
+    host=my_getenv("BROADCAST_PORT_5001_TCP_ADDR"),
+    port=int_of_string(my_getenv("BROADCAST_PORT_5001_TCP_PORT")),
     %mp3(bitrate=128),
     mount="rscc.main",
     mix
