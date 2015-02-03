@@ -1,6 +1,6 @@
 ADMIN_PASSWORD	?=	secure
-HARBOR_PASSWORD ?=	secure
-SOURCE_PASSWORD ?=	secure
+HARBOR_PASSWORD	?=	secure
+SOURCE_PASSWORD	?=	secure
 
 ENV ?=			HARBOR_PASSWORD=internal \
 			LIVE_PASSWORD=$(HARBOR_PASSWORD) \
@@ -10,7 +10,7 @@ ENV ?=			HARBOR_PASSWORD=internal \
 			RELAY_PASSWORD=internal
 
 
-dev:	broadcast
+dev:	chmod broadcast
 	$(ENV) fig up -d --no-deps main
 	fig logs main
 
@@ -21,3 +21,7 @@ broadcast:
 
 kill:
 	fig $@
+
+
+chmod:
+	chmod 777 data playlists playlists/emissions
