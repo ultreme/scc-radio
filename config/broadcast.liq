@@ -21,7 +21,7 @@ scc_out = output.icecast(description="La radio de les salut c'est cool", genre="
 output_docker_env.icecast = scc_out(
     host=my_getenv("ICECAST_PORT_8000_TCP_ADDR"),
     port=int_of_string(my_getenv("ICECAST_PORT_8000_TCP_PORT")),
-    password=my_getenv("SOURCE_PASSWORD")
+    password=my_getenv("ICECAST_SOURCE_PASSWORD")
 )
 #output_balrog.icecast = scc_out(host="212.83.158.125", port=8000, password=icecast_password)
 #output_hobbit.icecast = scc_out(host="212.129.20.90", port=8000, password=icecast_password)

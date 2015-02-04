@@ -21,17 +21,17 @@ broadcast:
   command: /supervisor.sh liquidsoap /config/broadcast.liq
   environment:
   - HARBOR_PASSWORD
-  - SOURCE_PASSWORD
+  - ICECAST_SOURCE_PASSWORD
   links:
   - icecast
 
 icecast:
   image: moul/icecast
   environment:
-  - SOURCE_PASSWORD
-  - ADMIN_PASSWORD
-  - PASSWORD
-  - RELAY_PASSWORD
+  - ICECAST_SOURCE_PASSWORD
+  - ICECAST_ADMIN_PASSWORD
+  - ICECAST_PASSWORD
+  - ICECAST_RELAY_PASSWORD
   ports:
   - 9100:8000
 
