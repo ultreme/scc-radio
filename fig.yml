@@ -35,5 +35,43 @@ icecast:
   ports:
   - 9100:8000
 
-# BTSYNC
-# FTP
+ftpd:
+  image: stilliard/pure-ftpd
+  ports:
+  - 0.0.0.0:21:21
+  # passive mode
+  - 0.0.0.0:40110:40110
+  - 0.0.0.0:40111:40111
+  - 0.0.0.0:40112:40112
+  - 0.0.0.0:40113:40113
+  - 0.0.0.0:40114:40114
+  - 0.0.0.0:40115:40115
+  - 0.0.0.0:40116:40116
+  - 0.0.0.0:40117:40117
+  - 0.0.0.0:40118:40118
+  - 0.0.0.0:40119:40119
+  - 0.0.0.0:40120:40120
+  - 0.0.0.0:40121:40121
+  - 0.0.0.0:40122:40122
+  - 0.0.0.0:40123:40123
+  - 0.0.0.0:40124:40124
+  - 0.0.0.0:40125:40125
+  - 0.0.0.0:40126:40126
+  - 0.0.0.0:40127:40127
+  - 0.0.0.0:40128:40128
+  - 0.0.0.0:40129:40129
+  volumes:
+  #- config:/ftp/config
+  - playlists:/ftp/playlists
+  - data:/ftp/data
+  - ftpd/:/etc/pure-ftpd/config
+  command: /bin/bash -c 'cd /etc/pure-ftpd; rm -f pureftpd.{pdb,passwd}; ln -s config/* .; /usr/sbin/pure-ftpd -c 30 -C 10 -l puredb:/etc/pure-ftpd/pureftpd.pdb -x -E -j -R -d -p 40110:40129'
+    
+btsync:
+  image: shykes/bittorrentsync
+  volumes:
+  - btsync:/btsync
+  - playlists:/data
+  ports:
+  - 8889:8889
+  - 55556:55556
