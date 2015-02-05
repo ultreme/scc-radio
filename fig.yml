@@ -4,7 +4,7 @@ main:
   - config:/config
   - playlists:/playlists
   - data:/data
-  command: /start.sh /config/main.liq
+  command: /supervisor.sh liquidsoap -v --debug /config/main.liq
   environment:
   - HARBOR_PASSWORD
   - LIVE_PASSWORD
@@ -17,34 +17,23 @@ broadcast:
   image: moul/liquidsoap
   volumes:
   - config:/config
-  command: /start.sh /config/broadcast.liq
+  - playlists/failures:/playlists/failures
+  command: /supervisor.sh liquidsoap /config/broadcast.liq
   environment:
   - HARBOR_PASSWORD
-  - ICECAST_PASSWORD
+  - ICECAST_SOURCE_PASSWORD
   links:
-  - icecast1
-  - icecast2
+  - icecast
 
-icecast1:
+icecast:
   image: moul/icecast
   environment:
-  - SOURCE_PASSWORD
-  - ADMIN_PASSWORD
-  - PASSWORD
-  - RELAY_PASSWORD
+  - ICECAST_SOURCE_PASSWORD
+  - ICECAST_ADMIN_PASSWORD
+  - ICECAST_PASSWORD
+  - ICECAST_RELAY_PASSWORD
   ports:
   - 9100:8000
-
-icecast2:
-  image: moul/icecast
-  ports:
-  - 9200:8000
-  environment:
-  - SOURCE_PASSWORD
-  - ADMIN_PASSWORD
-  - PASSWORD
-  - RELAY_PASSWORD
-
 
 # BTSYNC
 # FTP
