@@ -3,3 +3,8 @@
 .#*
 data/
 playlists/
+old/
+logs/
+ftpd/
+btsync/
+/config.mk

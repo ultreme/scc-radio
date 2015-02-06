@@ -4,36 +4,40 @@ main:
   - config:/config
   - playlists:/playlists
   - data:/data
-  command: /supervisor.sh liquidsoap -v --debug /config/main.liq
+  command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/main.liq'
   environment:
   - HARBOR_PASSWORD
   - LIVE_PASSWORD
   links:
   - broadcast
   ports:
-  - 8022:5001
+  - 8021:5001
 
 broadcast:
   image: moul/liquidsoap
   volumes:
   - config:/config
   - playlists/failures:/playlists/failures
-  command: /supervisor.sh liquidsoap /config/broadcast.liq
+  command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/broadcast.liq'
   environment:
   - HARBOR_PASSWORD
   - ICECAST_SOURCE_PASSWORD
   links:
   - icecast
+  ports:
+  - 5001
 
 icecast:
   image: moul/icecast
+  volumes:
+  - logs/icecast2:/var/log/icecast2
   environment:
   - ICECAST_SOURCE_PASSWORD
   - ICECAST_ADMIN_PASSWORD
   - ICECAST_PASSWORD
   - ICECAST_RELAY_PASSWORD
   ports:
-  - 9100:8000
+  - 12345:8000
 
 ftpd:
   image: stilliard/pure-ftpd
@@ -67,11 +71,11 @@ ftpd:
   - ftpd/:/etc/pure-ftpd/config
   command: /bin/bash -c 'cd /etc/pure-ftpd; rm -f pureftpd.{pdb,passwd}; ln -s config/* .; /usr/sbin/pure-ftpd -c 30 -C 10 -l puredb:/etc/pure-ftpd/pureftpd.pdb -x -E -j -R -d -p 40110:40129'
     
-btsync:
-  image: shykes/bittorrentsync
-  volumes:
-  - btsync:/btsync
-  - playlists:/data
-  ports:
-  - 8889:8889
-  - 55556:55556
+#btsync:
+#  image: shykes/bittorrentsync
+#  volumes:
+#  - btsync:/btsync
+#  - playlists:/data
+#  ports:
+#  - 8889:8889
+#  - 55556:55556
