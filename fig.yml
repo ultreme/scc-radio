@@ -79,3 +79,42 @@ ftpd:
 #  ports:
 #  - 8889:8889
 #  - 55556:55556
+
+admin:
+  image: tutum/apache-php
+  ports:
+  - 80:12348
+  volumes:
+  - admin:/app
+
+piwik:
+  #image: bprodoehl/piwik
+  #image: cbeer/piwik
+  image: marvambass/piwik
+  links:
+  - piwikmysql:mysql
+  ports:
+  - 12346:80
+  - 12347:443
+  environment:
+  - PIWIK_MYSQL_USER=root
+  - PIWIK_PASSWORD
+  - PIWIK_MYSQL_PASSWORD
+  - SITE_URL
+
+piwikcron:
+  image: marvambass/piwik
+  environment:
+  - HOSTNAME
+  - PIWIK_PASSWORD
+  entrypoint: /bin/bash
+  volumes:
+  - logs/icecast2:/data/logs/icecast2
+  command: -c 'apt-get -y install python; while true; do python /piwik/misc/log-analytics/import_logs.py --show-progress --url=http://$HOSTNAME:12346/piwik/ --idsite=1 --recorders=8 --enable-http-errors --log-format-name=icecast2 --strip-query-string /data/logs/icecast2/access.log --login=admin --password=$PIWIK_PASSWORD; sleep 10; done'
+
+piwikmysql:
+  image: mysql
+  environment:
+  - MYSQL_ROOT_PASSWORD
+  volumes:
+  - mysql:/var/lib/mysql

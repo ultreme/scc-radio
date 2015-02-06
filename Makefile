@@ -4,14 +4,23 @@ ADMIN_PASSWORD	?=	secure
 HARBOR_PASSWORD	?=	secure
 SOURCE_PASSWORD	?=	secure
 RELAY_PASSWORD  ?=	secure
+MYSQL_PASSWORD  ?=	secure
+PIWIK_PASSWORD  ?=	secure
+HOSTNAME	?=	$(shell hostname -f)
 
 ENV ?=			HARBOR_PASSWORD=$(HARBOR_PASSWORD) \
 			LIVE_PASSWORD=$(HARBOR_PASSWORD) \
 			ICECAST_SOURCE_PASSWORD=$(SOURCE_PASSWORD) \
 			ICECAST_ADMIN_PASSWORD=$(ADMIN_PASSWORD) \
 			ICECAST_PASSWORD=$(ADMIN_PASSWORD) \
-			ICECAST_RELAY_PASSWORD=$(RELAY_PASSWORD)
+			ICECAST_RELAY_PASSWORD=$(RELAY_PASSWORD) \
+			MYSQL_ROOT_PASSWORD=$(MYSQL_PASSWORD) \
+			PIWIK_MYSQL_PASSWORD=$(MYSQL_PASSWORD) \
+			PIWIK_PASSWORD=$(PIWIK_PASSWORD) \
+			HOSTNAME=$(HOSTNAME) \
+			SITE_URL=https://$(HOSTNAME):12347
 
+.PHONY: dev re_main re_broadcast re_icecast main broadcast icecast admin piwik piwikmysql
 
 dev:	chmod broadcast
 	$(ENV) fig up --no-deps main
@@ -46,6 +55,29 @@ broadcast: icecast
 
 icecast:
 	$(ENV) fig up -d --no-deps --no-recreate $@
+
+
+piwik:	piwikmysql
+	-$(ENV) fig kill $@
+	-$(ENV) fig rm --force $@
+	$(ENV) fig up -d --no-deps $@
+	$(ENV) fig logs $@
+
+
+admin:
+	-$(ENV) fig kill $@
+	-$(ENV) fig rm --force $@
+	$(ENV) fig up -d --no-deps $@
+	$(ENV) fig logs $@
+
+
+piwikmysql:
+	$(ENV) fig up -d --no-recreate $@
+
+
+piwikcron:
+	-$(ENV) fig kill $@
+	$(ENV) fig up -d $@
 
 
 kill:

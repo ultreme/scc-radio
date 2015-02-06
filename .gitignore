@@ -1,10 +1,11 @@
 *~
 *#
 .#*
-data/
-playlists/
-old/
-logs/
-ftpd/
-btsync/
+/data/
+/playlists/
+/old/
+/logs/
+/ftpd/
+/btsync/
 /config.mk
+/mysql/
