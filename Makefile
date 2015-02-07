@@ -75,6 +75,10 @@ piwikmysql:
 	$(ENV) fig up -d --no-recreate $@
 
 
+piwikmysql-client: piwikmysql
+	docker run -it --rm --link radioscc_piwikmysql_1:mysql -e MYSQL_ROOT_PASSWORD=$(MYSQL_PASSWORD) mysql /bin/bash -c 'mysql -h$$MYSQL_PORT_3306_TCP_ADDR -p$$MYSQL_ENV_MYSQL_ROOT_PASSWORD piwik'
+
+
 piwikcron:
 	-$(ENV) fig kill $@
 	$(ENV) fig up -d $@
