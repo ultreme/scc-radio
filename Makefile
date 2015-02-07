@@ -7,6 +7,7 @@ RELAY_PASSWORD  ?=	secure
 MYSQL_PASSWORD  ?=	secure
 PIWIK_PASSWORD  ?=	secure
 HOSTNAME	?=	$(shell hostname -f)
+1AND1_FTP	?=	ftp://user:pass@host
 
 ENV ?=			HARBOR_PASSWORD=$(HARBOR_PASSWORD) \
 			LIVE_PASSWORD=$(HARBOR_PASSWORD) \
@@ -94,3 +95,11 @@ clean:	kill
 
 chmod:
 	chmod -R 777 data playlists
+
+
+sync-1and1:
+	du -hs backup-1and1
+	find backup-1and1 -type f | wc -l
+	lftp -c "set ftp:list-options -a; open '$(1AND1_FTP)';lcd backup-1and1; mirror"
+	du -hs backup-1and1
+	find backup-1and1 -type f | wc -l

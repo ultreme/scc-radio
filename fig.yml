@@ -68,6 +68,7 @@ ftpd:
   #- config:/ftp/config
   - playlists:/ftp/playlists
   - data:/ftp/data
+  - backup-1and1:/ftp/backup-1and1
   - ftpd/:/etc/pure-ftpd/config
   command: /bin/bash -c 'cd /etc/pure-ftpd; rm -f pureftpd.{pdb,passwd}; ln -s config/* .; /usr/sbin/pure-ftpd -c 30 -C 10 -l puredb:/etc/pure-ftpd/pureftpd.pdb -x -E -j -R -d -p 40110:40129'
     
