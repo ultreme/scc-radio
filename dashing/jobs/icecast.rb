@@ -10,9 +10,15 @@ total_listeners_points = []
 end
 total_listeners_last_x = total_listeners_points.last[:x]
 
+total_connections_points = []
+(1..100).each do |i|
+  total_connections_points << { x: i, y: 0 }
+end
+total_connections_last_x = total_connections_points.last[:x]
+total_connections_current = 0
+
 
 SCHEDULER.every '5s' do
-  total_listeners_last = total_listeners_current
   uri = URI.parse('http://' + ENV['ICECAST_PORT_8000_TCP_ADDR'] + ':' + ENV['ICECAST_PORT_8000_TCP_PORT'] + '/admin/stats.xml')
   http = Net::HTTP.new(uri.host, uri.port)
   request = Net::HTTP::Get.new(uri.request_uri)
@@ -24,16 +30,26 @@ SCHEDULER.every '5s' do
     #puts 'source', ele.text
   end
 
-  total_listeners_current = doc.root.elements['listeners'].text.to_i
-
   #pp response
   #puts response.body
 
-  send_event('total-listeners', { current: total_listeners_current, last: total_listeners_last })
+  ####
 
+  total_listeners_last = total_listeners_current
+  total_listeners_current = doc.root.elements['listeners'].text.to_i
+  total_connections_last = total_connections_current
+  total_connections_current = doc.root.elements['source_client_connections'].text.to_i
+
+
+  send_event('total-listeners', { current: total_listeners_current, last: total_listeners_last })
+  send_event('total-connections', { current: total_connections_current, last: total_connections_last })
 
   total_listeners_points.shift
   total_listeners_last_x += 1
   total_listeners_points << { x: total_listeners_last_x, y: total_listeners_current }
   send_event('total-listeners-graph', points: total_listeners_points)
+  total_connections_points.shift
+  total_connections_last_x += 1
+  total_connections_points << { x: total_connections_last_x, y: total_connections_current }
+  send_event('total-connections-graph', points: total_connections_points)
 end
