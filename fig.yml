@@ -129,3 +129,5 @@ dashing:
   - dashing:/dashing
   links:
   - icecast
+  environment:
+  - ICECAST_ADMIN_PASSWORD
