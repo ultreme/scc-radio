@@ -4,6 +4,7 @@ require 'uri'
 require 'pp'
 
 current_song = ''
+current_live = ''
 
 total_listeners_current = 0
 total_listeners_points = []
@@ -59,5 +60,15 @@ SCHEDULER.every '5s' do
   current_song = doc.root.elements['source'].elements['title'].text
   if latest_song != current_song
     send_event('current-song', { text: current_song })
+  end
+
+  latest_live = current_live
+  current_live = current_song =~ /LIVE\ -\ Salut/
+  if latest_live != current_live
+    if current_live
+      send_event('is-live', { text: 'LIVE :)' })
+    else
+      send_event('is-live', { text: 'PAS LIVE :(' })
+    end
   end
 end
