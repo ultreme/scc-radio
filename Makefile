@@ -21,7 +21,7 @@ ENV ?=			HARBOR_PASSWORD=$(HARBOR_PASSWORD) \
 			HOSTNAME=$(HOSTNAME) \
 			SITE_URL=https://$(HOSTNAME):12347
 
-.PHONY: dev re_main re_broadcast re_icecast main broadcast icecast admin piwik piwikmysql
+.PHONY: dev re_main re_broadcast re_icecast main broadcast icecast admin piwik piwikmysql dashing
 
 dev:	chmod broadcast
 	$(ENV) fig up --no-deps main
@@ -103,3 +103,10 @@ sync-1and1:
 	lftp -c "set ftp:list-options -a; open '$(1AND1_FTP)';lcd backup-1and1; mirror"
 	du -hs backup-1and1
 	find backup-1and1 -type f | wc -l
+
+
+dashing:
+	-$(ENV) fig kill $@
+	-$(ENV) fig rm --force $@
+	$(ENV) fig up -d --no-deps $@
+	$(ENV) fig logs $@
