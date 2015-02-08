@@ -41,7 +41,7 @@ SCHEDULER.every '5s' do
   total_listeners_last = total_listeners_current
   total_listeners_current = doc.root.elements['listeners'].text.to_i
   total_connections_last = total_connections_current
-  total_connections_current = doc.root.elements['source_client_connections'].text.to_i
+  total_connections_current = doc.root.elements['listener_connections'].text.to_i
 
 
   send_event('total-listeners', { current: total_listeners_current, last: total_listeners_last })
