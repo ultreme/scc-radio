@@ -3,6 +3,8 @@ require 'rexml/document'
 require 'uri'
 require 'pp'
 
+current_song = ''
+
 total_listeners_current = 0
 total_listeners_points = []
 (1..100).each do |i|
@@ -52,4 +54,10 @@ SCHEDULER.every '5s' do
   total_connections_last_x += 1
   total_connections_points << { x: total_connections_last_x, y: total_connections_current }
   send_event('total-connections-graph', points: total_connections_points)
+
+  latest_song = current_song
+  current_song = doc.root.elements['source'].elements['title'].text
+  if latest_song != current_song
+    send_event('current-song', { text: current_song })
+  end
 end
