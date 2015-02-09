@@ -21,7 +21,7 @@ ENV ?=			HARBOR_PASSWORD=$(HARBOR_PASSWORD) \
 			HOSTNAME=$(HOSTNAME) \
 			SITE_URL=https://$(HOSTNAME):12347
 
-.PHONY: dev re_main re_broadcast re_icecast main broadcast icecast admin piwik piwikmysql dashing
+.PHONY: dev re_main re_broadcast re_icecast main broadcast icecast admin piwik piwikmysql dashing ftpd
 
 dev:	chmod broadcast
 	$(ENV) fig up --no-deps main
@@ -106,6 +106,13 @@ sync-1and1:
 
 
 dashing:
+	-$(ENV) fig kill $@
+	-$(ENV) fig rm --force $@
+	$(ENV) fig up -d --no-deps $@
+	$(ENV) fig logs $@
+
+
+ftpd:
 	-$(ENV) fig kill $@
 	-$(ENV) fig rm --force $@
 	$(ENV) fig up -d --no-deps $@
