@@ -49,6 +49,21 @@ songs_reggae = mksafe(
             )
         )
     )
+songs_trance = mksafe(
+    audio_to_stereo(
+        rewrite_metadata(
+            [
+                ("title", "$(title) (reggae - radio Salut c'est cool)"),
+                ("comment", "http://www.salutcestcool.com")
+                ],
+            playlist.safe(
+                reload=600,
+                "/playlists/songs/reggae",
+                mode="random"
+                )
+            )
+        )
+    )
 songs_soiree = mksafe(
     audio_to_stereo(
         rewrite_metadata(
@@ -151,6 +166,7 @@ calendar_mix = switch(track_sensitive=true, [
         ({ 10h-11h and 1w }, songs_pluie),
         ({ 18h-23h }, songs_soiree ),
         ({ 23h-06h }, songs_nuit ),
+        ({ 04h-06h }, songs_trance ),
         ({ 06h-08h }, songs_matin ),
         ({ 16h20-17h }, songs_reggae ),
         ({ true }, songs_journee)
