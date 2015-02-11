@@ -4,6 +4,7 @@ main:
   - config:/config
   - playlists:/playlists
   - data:/data
+  - /etc/localtime:/etc/localtime:ro 
   command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/main.liq'
   environment:
   - HARBOR_PASSWORD
@@ -18,6 +19,7 @@ broadcast:
   volumes:
   - config:/config
   - playlists/failures:/playlists/failures
+  - /etc/localtime:/etc/localtime:ro 
   command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/broadcast.liq'
   environment:
   - HARBOR_PASSWORD
@@ -31,6 +33,7 @@ icecast:
   image: moul/icecast
   volumes:
   - logs/icecast2:/var/log/icecast2
+  - /etc/localtime:/etc/localtime:ro 
   environment:
   - ICECAST_SOURCE_PASSWORD
   - ICECAST_ADMIN_PASSWORD
@@ -70,6 +73,7 @@ ftpd:
   - data:/ftp/data
   - backup-1and1:/ftp/backup-1and1
   - ftpd/:/etc/pure-ftpd/config
+  - /etc/localtime:/etc/localtime:ro 
   command: /bin/bash -c 'cd /etc/pure-ftpd; rm -f pureftpd.{pdb,passwd}; ln -s config/* .; /usr/sbin/pure-ftpd -c 30 -C 10 -l puredb:/etc/pure-ftpd/pureftpd.pdb -x -E -j -R -d -p 40110:40129'
     
 #btsync:
@@ -86,11 +90,14 @@ admin:
   ports:
   - 80:12348
   volumes:
+  - /etc/localtime:/etc/localtime:ro 
   - admin:/app
 
 piwik:
   #image: bprodoehl/piwik
   #image: cbeer/piwik
+  volumes:
+  - /etc/localtime:/etc/localtime:ro 
   image: marvambass/piwik
   links:
   - piwikmysql:mysql
@@ -110,6 +117,7 @@ piwikcron:
   - PIWIK_PASSWORD
   entrypoint: /bin/bash
   volumes:
+  - /etc/localtime:/etc/localtime:ro 
   - logs/icecast2:/data/logs/icecast2
   command: -c 'apt-get -y install python; while true; do python /piwik/misc/log-analytics/import_logs.py --show-progress --url=http://$HOSTNAME:12346/piwik/ --idsite=1 --recorders=8 --enable-http-errors --log-format-name=icecast2 --strip-query-string /data/logs/icecast2/access.log --login=admin --password=$PIWIK_PASSWORD; sleep 10; done'
 
@@ -118,6 +126,7 @@ piwikmysql:
   environment:
   - MYSQL_ROOT_PASSWORD
   volumes:
+  - /etc/localtime:/etc/localtime:ro 
   - mysql:/var/lib/mysql
 
 dashing:
@@ -126,6 +135,7 @@ dashing:
   - 0.0.0.0:12349:3030
   command: /bin/bash /run.sh
   volumes:
+  - /etc/localtime:/etc/localtime:ro 
   - dashing:/dashing
   links:
   - icecast
