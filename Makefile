@@ -8,6 +8,7 @@ MYSQL_PASSWORD  ?=	secure
 PIWIK_PASSWORD  ?=	secure
 HOSTNAME	?=	$(shell hostname -f)
 1AND1_FTP	?=	ftp://user:pass@host
+ADMIN_IFRAME_URL ?=	http://$(shell ifconfig eth0 | grep inet\  | cut -d: -f2 | cut -d\  -f1):12348/?auth=$(ADMIN_PASSWORD)
 
 ENV ?=			HARBOR_PASSWORD=$(HARBOR_PASSWORD) \
 			LIVE_PASSWORD=$(HARBOR_PASSWORD) \
@@ -19,7 +20,8 @@ ENV ?=			HARBOR_PASSWORD=$(HARBOR_PASSWORD) \
 			PIWIK_MYSQL_PASSWORD=$(MYSQL_PASSWORD) \
 			PIWIK_PASSWORD=$(PIWIK_PASSWORD) \
 			HOSTNAME=$(HOSTNAME) \
-			SITE_URL=https://$(HOSTNAME):12347
+			SITE_URL=https://$(HOSTNAME):12347 \
+			ADMIN_IFRAME_URL=$(ADMIN_IFRAME_URL)
 
 .PHONY: dev re_main re_broadcast re_icecast main broadcast icecast admin piwik piwikmysql dashing ftpd
 

@@ -13,6 +13,7 @@ main:
   - broadcast
   ports:
   - 8021:5001
+  - 127.0.0.1:5000:5000
 
 broadcast:
   image: moul/liquidsoap
@@ -88,10 +89,14 @@ ftpd:
 admin:
   image: tutum/apache-php
   ports:
-  - 80:12348
+  - 12348:80
   volumes:
   - /etc/localtime:/etc/localtime:ro 
   - admin:/app
+  links:
+  - main
+  environment:
+  - ICECAST_ADMIN_PASSWORD
 
 piwik:
   #image: bprodoehl/piwik
@@ -141,3 +146,5 @@ dashing:
   - icecast
   environment:
   - ICECAST_ADMIN_PASSWORD
+  - ADMIN_IFRAME_URL
+
