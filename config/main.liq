@@ -22,7 +22,7 @@ jingles = mksafe(
     rewrite_metadata(
         [
             ("artist", "Salut c'est cool"),
-            ("title","Jingle (Salut c'est cool)"),
+            ("title","Jingle (radio Salut c'est cool)"),
             ("comment","http://www.salutcestcool.com/")
             ],
         audio_to_stereo(
@@ -34,16 +34,91 @@ jingles = mksafe(
             )
         )
     )
-songs = mksafe(
+songs_reggae = mksafe(
     audio_to_stereo(
         rewrite_metadata(
             [
-                ("title", "$(title) (radio Salut c'est cool)"),
+                ("title", "$(title) (reggae - radio Salut c'est cool)"),
                 ("comment", "http://www.salutcestcool.com")
                 ],
             playlist.safe(
                 reload=600,
-                "/playlists/songs",
+                "/playlists/songs/reggae",
+                mode="random"
+                )
+            )
+        )
+    )
+songs_soiree = mksafe(
+    audio_to_stereo(
+        rewrite_metadata(
+            [
+                ("title", "$(title) (soiree - radio Salut c'est cool)"),
+                ("comment", "http://www.salutcestcool.com")
+                ],
+            playlist.safe(
+                reload=600,
+                "/playlists/songs/soiree",
+                mode="random"
+                )
+            )
+        )
+    )
+songs_nuit = mksafe(
+    audio_to_stereo(
+        rewrite_metadata(
+            [
+                ("title", "$(title) (nuit - radio Salut c'est cool)"),
+                ("comment", "http://www.salutcestcool.com")
+                ],
+            playlist.safe(
+                reload=600,
+                "/playlists/songs/nuit",
+                mode="random"
+                )
+            )
+        )
+    )
+songs_matin = mksafe(
+    audio_to_stereo(
+        rewrite_metadata(
+            [
+                ("title", "$(title) (matin - radio Salut c'est cool)"),
+                ("comment", "http://www.salutcestcool.com")
+                ],
+            playlist.safe(
+                reload=600,
+                "/playlists/songs/matin",
+                mode="random"
+                )
+            )
+        )
+    )
+songs_journee = mksafe(
+    audio_to_stereo(
+        rewrite_metadata(
+            [
+                ("title", "$(title) (journee - radio Salut c'est cool)"),
+                ("comment", "http://www.salutcestcool.com")
+                ],
+            playlist.safe(
+                reload=600,
+                "/playlists/songs/journee",
+                mode="random"
+                )
+            )
+        )
+    )
+songs_pluie = mksafe(
+    audio_to_stereo(
+        rewrite_metadata(
+            [
+                ("title", "$(title) (pluie - radio Salut c'est cool)"),
+                ("comment", "http://www.salutcestcool.com")
+                ],
+            playlist.safe(
+                reload=600,
+                "/playlists/songs/pluie",
                 mode="random"
                 )
             )
@@ -52,7 +127,7 @@ songs = mksafe(
 live = audio_to_stereo(
     rewrite_metadata(
         [
-            ("title", "$(title) (LIVE - Salut c'est cool)"),
+            ("title", "$(title) (LIVE - radio Salut c'est cool)"),
             ("comment", "http://www.salutcestcool.com")
             ],
         stretch(
@@ -72,8 +147,17 @@ live = audio_to_stereo(
 
 
 # MIXS
+calendar_mix = switch(track_sensitive=true, [
+        ({ 10h-11h and 1w }, songs_pluie),
+        ({ 18h-23h }, songs_soiree ),
+        ({ 23h-06h }, songs_nuit ),
+        ({ 06h-08h }, songs_matin ),
+        ({ 16h20-17h }, songs_reggae ),
+        ({ true }, songs_journee)
+])
+
 #mix = random(weights=[1,1], [jingles, songs])
-mix = fade(jingles,songs)
+mix = fade(jingles, calendar_mix)
 mix = add([mix, switch([({0m0s}, clock)])])
 #mix = add([mix, amplify(5., override="replay_gain", live)])
 #mix = fallback(track_sensitive=true, transitions=[custofade], [ mix ])
