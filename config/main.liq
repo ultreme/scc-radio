@@ -18,7 +18,7 @@ set("decoding.buffer_length",10.)
 
 
 # INPUTS
-clock = mksafe(audio_to_stereo(playlist.safe(reload=3600, "/playlists/singles/", mode="random")))
+clock = mksafe(audio_to_stereo(playlist.safe(reload=3600, "/playlists/singles/", mode="randomize",reload_mode="rounds")))
 jingles = mksafe(
     rewrite_metadata(
         [
@@ -30,7 +30,7 @@ jingles = mksafe(
             playlist.safe(
                 reload=1800,
                 "/playlists/jingles",
-                mode="random"
+                mode="randomize",reload_mode="rounds"
                 )
             )
         )
@@ -45,7 +45,7 @@ songs_reggae = mksafe(
             playlist.safe(
                 reload=600,
                 "/playlists/songs/reggae",
-                mode="random"
+                mode="randomize",reload_mode="rounds"
                 )
             )
         )
@@ -60,7 +60,7 @@ songs_trance = mksafe(
             playlist.safe(
                 reload=600,
                 "/playlists/songs/reggae",
-                mode="random"
+                mode="randomize",reload_mode="rounds"
                 )
             )
         )
@@ -75,7 +75,7 @@ songs_soiree = mksafe(
             playlist.safe(
                 reload=600,
                 "/playlists/songs/soiree",
-                mode="random"
+                mode="randomize",reload_mode="rounds"
                 )
             )
         )
@@ -90,7 +90,7 @@ songs_nuit = mksafe(
             playlist.safe(
                 reload=600,
                 "/playlists/songs/nuit",
-                mode="random"
+                mode="randomize",reload_mode="rounds"
                 )
             )
         )
@@ -105,7 +105,7 @@ songs_matin = mksafe(
             playlist.safe(
                 reload=600,
                 "/playlists/songs/matin",
-                mode="random"
+                mode="randomize",reload_mode="rounds"
                 )
             )
         )
@@ -120,7 +120,7 @@ songs_journee = mksafe(
             playlist.safe(
                 reload=600,
                 "/playlists/songs/journee",
-                mode="random"
+                mode="randomize",reload_mode="rounds"
                 )
             )
         )
@@ -135,7 +135,7 @@ songs_pluie = mksafe(
             playlist.safe(
                 reload=600,
                 "/playlists/songs/pluie",
-                mode="random"
+                mode="randomize",reload_mode="rounds"
                 )
             )
         )
