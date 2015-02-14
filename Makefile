@@ -8,7 +8,7 @@ MYSQL_PASSWORD  ?=	secure
 PIWIK_PASSWORD  ?=	secure
 HOSTNAME	?=	$(shell hostname -f)
 1AND1_FTP	?=	ftp://user:pass@host
-ADMIN_IFRAME_URL ?=	http://$(shell ifconfig eth0 | grep inet\  | cut -d: -f2 | cut -d\  -f1):12348/?auth=$(ADMIN_PASSWORD)
+ADMIN_IFRAME_URL ?=	http://$(shell ifconfig eth0 | grep inet\  | cut -d: -f2 | cut -d\  -f1):12348/admin.php?auth=$(ADMIN_PASSWORD)
 
 ENV ?=			HARBOR_PASSWORD=$(HARBOR_PASSWORD) \
 			LIVE_PASSWORD=$(HARBOR_PASSWORD) \
@@ -34,6 +34,7 @@ re_main: broadcast
 	-$(ENV) fig rm --force main
 	-$(ENV) fig up -d --no-deps main
 	-$(ENV) fig logs main
+	$(MAKE) admin
 
 
 re_broadcast: icecast
@@ -71,7 +72,7 @@ admin:
 	-$(ENV) fig kill $@
 	-$(ENV) fig rm --force $@
 	$(ENV) fig up -d --no-deps $@
-	$(ENV) fig logs $@
+	#$(ENV) fig logs $@
 
 
 piwikmysql:
