@@ -60,35 +60,28 @@ function get_metadata() {
 	$entry = array();
       } else {
 	$value = explode('=', $line, 2);
-	$entry[$value[0]] = $value[1];
+	$entry[$value[0]] = trim(trim($value[1]), '"');
       }
     }
     $entries_assoc[$entry_number] = $entry;
     $entries = array();
     for ($i = 1; $i < sizeof($entries_assoc); $i++) {
       $entry = $entries_assoc[$i];
-      $entry['live'] = false;
+      $pos = strrpos($entry['title'], '(');
+      $entry['left_title'] = trim(substr($entry['title'], 0, $pos));
+      $entry['right_title'] = substr(trim(substr($entry['title'], $pos)), 1, -1);
       if (preg_match('/(LIVE - radio Salut c\'est cool)/', $entry['title'])) {
 	$entry['live'] = true;
 	$entry['mode'] = 'live';
-      } else if (preg_match('/Jingle (radio Salut c\'est cool)/', $entry['title'])) {
-	$entry['mode'] = 'jingle';
-      } else if (preg_match('/(reggae - radio Salut c\'est cool)/', $entry['title'])) {
-	$entry['mode'] = 'reggae';
-      } else if (preg_match('/(soiree - radio Salut c\'est cool)/', $entry['title'])) {
-	$entry['mode'] = 'soiree';
-      } else if (preg_match('/(jour - radio Salut c\'est cool)/', $entry['title'])) {
-	$entry['mode'] = 'jour';
-      } else if (preg_match('/(nuit - radio Salut c\'est cool)/', $entry['title'])) {
-	$entry['mode'] = 'nuit';
-      } else if (preg_match('/(matin - radio Salut c\'est cool)/', $entry['title'])) {
-	$entry['mode'] = 'matin';
-      } else if (preg_match('/(pluie - radio Salut c\'est cool)/', $entry['title'])) {
-	$entry['mode'] = 'pluie';
-      } else if (preg_match('/(trance - radio Salut c\'est cool)/', $entry['title'])) {
-	$entry['mode'] = 'trance';
-      } else { 
-	$entry['mode'] = 'random';
+      } else {
+	$mode = explode(' - ', $entry['right_title']);
+	$entry['live'] = false;
+	if ($mode[0]) {
+	  $entry['mode'] = $mode[0];
+	}
+      }
+      if ($entry['artist'] && $entry['left_title']) {
+	$entry['full_title'] = sprintf('%s - %s', $entry['artist'], $entry['left_title']);
       }
       $entries[] = $entry;
     }
