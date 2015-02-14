@@ -71,17 +71,22 @@ function get_metadata() {
       $entry['left_title'] = trim(substr($entry['title'], 0, $pos));
       $entry['right_title'] = substr(trim(substr($entry['title'], $pos)), 1, -1);
       if (preg_match('/(LIVE - radio Salut c\'est cool)/', $entry['title'])) {
-	$entry['live'] = true;
+	$entry['live'] = 1;
 	$entry['mode'] = 'live';
       } else {
 	$mode = explode(' - ', $entry['right_title']);
-	$entry['live'] = false;
+	$entry['live'] = 0;
 	if ($mode[0]) {
 	  $entry['mode'] = $mode[0];
 	}
       }
       if ($entry['artist'] && $entry['left_title']) {
 	$entry['full_title'] = sprintf('%s - %s', $entry['artist'], $entry['left_title']);
+      } else {
+	$entry['full_title'] = $entry['left_title'];
+      }
+      if (empty($entry['full_title'])) {
+	$entry['full_title'] = 'Morceau sans nom';
       }
       $entries[] = $entry;
     }
