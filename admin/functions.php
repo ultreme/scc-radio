@@ -64,7 +64,7 @@ function get_metadata() {
 	$entry = array();
       } else {
 	$value = explode('=', $line, 2);
-	$entry[$value[0]] = trim(trim($value[1]), '"');
+	$entry[$value[0]] = utf8_decode(trim(trim($value[1]), '"'));
       }
     }
     $entries_assoc[$entry_number] = $entry;
