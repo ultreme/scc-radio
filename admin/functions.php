@@ -42,7 +42,11 @@ function get_infos() {
 
 function get_metadata() {
   $entries = cache_get('metadata');
-  if (!$entries) {
+  if ($entries) {
+    foreach ($entries as $key => $value) {
+      $entries[$key] = (array)$value;
+    }
+  } else {
     $lines = explode("\n", trim(telnet_send("rscc(dot)main.metadata")));
     $entries_assoc = [];
     $entry_number = 0;

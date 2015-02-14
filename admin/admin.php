@@ -17,6 +17,7 @@ if ($_ENV['ICECAST_ADMIN_PASSWORD'] != $_GET['auth']) {
       <input type="hidden" name="auth" value="<?php echo $_GET['auth'] ?>" />
       <input type="submit" name="action" value="NEXT" />
       <input type="submit" name="action" value="INFO" />
+      <input type="submit" name="action" value="REFRESH" />
     </form>
     <?php
        include('functions.php');
@@ -35,6 +36,8 @@ if ($_ENV['ICECAST_ADMIN_PASSWORD'] != $_GET['auth']) {
            case 'REQUEST':
              echo "TODO";
            break;
+           case 'REFRESH':
+           break;
            default:
              print_r($_REQUEST);
              print_r($_ENV);
@@ -43,5 +46,19 @@ if ($_ENV['ICECAST_ADMIN_PASSWORD'] != $_GET['auth']) {
          echo '</pre>';
        }
        ?>
+    <table border="1">
+      <thead>
+	<th>Artiste</th>
+	<th>Morceau</th>
+	<th>Mode</th>
+      </thead>
+      <?php foreach (get_metadata() as $song) { ?>
+      <tr>
+	<td><?php print($song['artist']);?>&nbsp;</td>
+	<td><?php print($song['left_title']);?>&nbsp;</td>
+	<td><?php print($song['mode']);?></td>
+      </tr>
+      <?php } ?>
+    </table>
   </body>
 </html>
