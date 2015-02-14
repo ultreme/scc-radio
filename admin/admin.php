@@ -11,6 +11,7 @@ if ($_ENV['ICECAST_ADMIN_PASSWORD'] != $_GET['auth']) {
     <style>
       html { background: #505; color: white; }
     </style>
+    <meta http-equiv="refresh" content="10; URL=<?php print($_SERVER['PHP_SELF'].'?auth='.$_GET['auth'].'&action=REFRESH'); ?>" />
   </head>
   <body>
     <form method="GET">
