@@ -13,6 +13,7 @@ main:
   - broadcast
   ports:
   - 8021:5001
+  - 8022:5002
   - 127.0.0.1:5000:5000
 
 broadcast:

@@ -140,10 +140,29 @@ songs_pluie = mksafe(
             )
         )
     )
-live = audio_to_stereo(
+live_scc = audio_to_stereo(
     rewrite_metadata(
         [
-            ("title", "$(title) (LIVE - radio Salut c'est cool)"),
+            ("title", "$(title) (LIVE de SCC - radio Salut c'est cool)"),
+            ("comment", "http://www.salutcestcool.com")
+            ],
+        stretch(
+            ratio=interactive.float("test", 1.00005),
+            input.harbor(
+                "rscc.live",
+                id="rscc.live",
+                port=5002,
+                password=my_getenv("LIVE_PASSWORD"),
+                user="source",
+                logfile="/tmp/harbor.log"
+                )
+            )
+        )
+    )
+live_guest = audio_to_stereo(
+    rewrite_metadata(
+        [
+            ("title", "$(title) (LIVE de copains - radio Salut c'est cool)"),
             ("comment", "http://www.salutcestcool.com")
             ],
         stretch(
@@ -179,7 +198,7 @@ mix = add([mix, switch([({0m0s}, clock)])])
 #mix = add([mix, amplify(5., override="replay_gain", live)])
 #mix = fallback(track_sensitive=true, transitions=[custofade], [ mix ])
 #mix = fallback(track_sensitive=false, [multi_live,mix])
-mix = fallback(track_sensitive=false, [live, mix])
+mix = fallback(track_sensitive=false, [live_scc, live_guest, mix])
 mix = store_metadata(size=20,id="history",mix)
 def feedback(metadata)
    system("echo "^ quote(metadata["artist"] ^" - "^ metadata["title"]) ^" > /data/latest.txt")
@@ -204,6 +223,13 @@ output.file(
     %vorbis,
      reopen_on_metadata=false,
      fallible=true,
-     "/playlists/emissions/" ^ title ^ ".ogg",
-     live
+     "/playlists/emissions/scc/" ^ title ^ ".ogg",
+     live_scc
+     )
+output.file(
+    %vorbis,
+     reopen_on_metadata=false,
+     fallible=true,
+     "/playlists/emissions/guest/" ^ title ^ ".ogg",
+     live_guest
      )
