@@ -74,9 +74,14 @@ function get_metadata() {
       $pos = strrpos($entry['title'], '(');
       $entry['left_title'] = trim(substr($entry['title'], 0, $pos));
       $entry['right_title'] = substr(trim(substr($entry['title'], $pos)), 1, -1);
-      if (preg_match('/(LIVE - radio Salut c\'est cool)/', $entry['title'])) {
+      if (preg_match('/(LIVE de copains- radio Salut c\'est cool)/', $entry['title'])) {
 	$entry['live'] = 1;
 	$entry['mode'] = 'live';
+	$entry['artist'] = 'Copains de salut c\'est cool';
+      } else if (preg_match('/(LIVE de SCC - radio Salut c\'est cool)/', $entry['title'])) {
+	$entry['live'] = 1;
+	$entry['mode'] = 'live';
+	$entry['artist'] = 'salut c\'est cool';
       } else {
 	$mode = explode(' - ', $entry['right_title']);
 	$entry['live'] = 0;

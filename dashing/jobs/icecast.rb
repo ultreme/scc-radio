@@ -63,7 +63,7 @@ SCHEDULER.every '5s' do
   end
 
   latest_live = current_live
-  current_live = current_song =~ /LIVE\ -\ Salut/
+  current_live = current_song =~ /LIVE\ de\ /
   if latest_live != current_live
     if current_live
       send_event('is-live', { text: 'LIVE :)' })
