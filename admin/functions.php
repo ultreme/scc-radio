@@ -95,7 +95,8 @@ function get_metadata() {
 	$entry['full_title'] = $entry['left_title'];
       }
       if (empty($entry['full_title'])) {
-	$entry['full_title'] = 'Morceau sans nom';
+	//$entry['full_title'] = 'Morceau sans nom';
+        $entry['full_title'] = basename($entry['filename']);
       }
       $entries[] = $entry;
     }
