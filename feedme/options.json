@@ -1,0 +1,12 @@
+{
+  "server": "irc.freenode.net",
+  "nick": "Ursulla",
+  "channels": [ "#salutcestcool", "#michelin" ],
+  "user":
+    {
+      "username": "Ursulla",
+      "hostname": "home",
+      "servername": "home",
+      "realname": "Ursulla"
+    }
+}

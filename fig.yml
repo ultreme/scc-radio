@@ -154,3 +154,5 @@ jordy:
   volumes:
   - jordy:/data
   
+feedme:
+  build: feedme
