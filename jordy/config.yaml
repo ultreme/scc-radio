@@ -1,0 +1,61 @@
+server: irc.freenode.net
+port: 6667
+channels: 
+  - "#michelin"
+  - "#salutcestcool"
+info: 
+  nick: jordy2000
+  user: jordy2000
+  name: jordy2000
+admins: 
+  - ".*manfred@88.190.219.37"
+  - ".*moul@88.190.219.37"
+  - ".*vik@online.vlq16.iliad.fr"
+  - ".*uid65256@gateway.web.irccloud.com.*"
+  - ".*uid65256@.*"
+ignore:
+  users:
+    - ".*m1ch3l@.*"
+    - ".*jordy@.*"
+    - ".*bambite@.*"
+    - ".*viktore@.*"
+cmdchar: ">"
+vhost: null
+db: triplie.db
+modules: 
+  - triplie
+  - admin
+  - read
+  - log
+ai: 
+  associations: 
+    halflife: 10
+    limit: 2500
+  similars: 
+    algorithm: porter
+    language: en
+    percent: 30
+  keywords: 
+    threshold: 150
+    limit: 30
+  generalization: 50
+  creativity: 75
+  love: 
+    default: 100
+    for: 
+      otherBot: 100
+  ngram: 
+    length: 3
+    depth: 8
+  sleep: [1, 2]
+  answer: 
+    minwords: 3
+    minkeys: 1
+  partake: 
+    probability: 60
+    traffic: 100
+  context: 
+    halflife: 600
+    others: 0.25
+    maxsize: 1
+__file: /data/config.yaml

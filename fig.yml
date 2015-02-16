@@ -149,3 +149,8 @@ dashing:
   - ICECAST_ADMIN_PASSWORD
   - ADMIN_IFRAME_URL
 
+jordy:
+  image: moul/triplie
+  volumes:
+  - jordy:/data
+  
