@@ -41,19 +41,19 @@ ai:
   generalization: 50
   creativity: 75
   love: 
-    default: 100
+    default: 20
     for: 
-      otherBot: 100
+      otherBot: 0
   ngram: 
-    length: 3
+    length: 4
     depth: 8
-  sleep: [1, 2]
+  sleep: [2, 3]
   answer: 
     minwords: 3
     minkeys: 1
   partake: 
-    probability: 60
-    traffic: 100
+    probability: 10
+    traffic: 10
   context: 
     halflife: 600
     others: 0.25
