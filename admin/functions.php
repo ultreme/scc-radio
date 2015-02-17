@@ -35,6 +35,8 @@ function get_infos() {
   $infos = array();
   $metadata = get_metadata();
   $infos['current'] = array_shift($metadata);
+  //include_once('getid3/getid3/getid3.php');
+  //$getID3 = new getID3;
   $infos['history'] = $metadata;
   return $infos;
 }
@@ -81,7 +83,8 @@ function get_metadata() {
       } else if (preg_match('/(LIVE de SCC - radio Salut c\'est cool)/', $entry['title'])) {
 	$entry['live'] = 1;
 	$entry['mode'] = 'live';
-	$entry['artist'] = 'salut c\'est cool';
+	$entry['live_artist'] = 'scc';
+	//$entry['artist'] = 'salut c\'est cool';
       } else {
 	$mode = explode(' - ', $entry['right_title']);
 	$entry['live'] = 0;
@@ -89,15 +92,24 @@ function get_metadata() {
 	  $entry['mode'] = $mode[0];
 	}
       }
-      if ($entry['artist'] && $entry['left_title']) {
-	$entry['full_title'] = sprintf('%s - %s', $entry['artist'], $entry['left_title']);
-      } else {
-	$entry['full_title'] = $entry['left_title'];
+      if (empty($entry['full_title'])) {
+	if ($entry['artist'] && $entry['left_title']) {
+	  $entry['full_title'] = sprintf('%s - %s', $entry['artist'], $entry['left_title']);
+	} else {
+	  $entry['full_title'] = $entry['left_title'];
+	}
       }
       if (empty($entry['full_title'])) {
 	//$entry['full_title'] = 'Morceau sans nom';
         $entry['full_title'] = basename($entry['filename']);
       }
+      /*if ($entry['live_artist'] == 'scc') {
+	if (empty($entry['full_title'])) {
+	  $entry['full_title'] = 'salut c\'est cool en live';
+	} else {
+	  $entry['full_title'] = sprintf('salut c\'est cool en live (%s)', $entry['full_title']);
+	}
+	}*/
       $entries[] = $entry;
     }
 
