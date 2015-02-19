@@ -184,15 +184,24 @@ live_guest = audio_to_stereo(
 # MIXS
 calendar_mix = switch(track_sensitive=true, [
         ({ 10h-11h and 1w }, songs_pluie),
+
         ({ 18h-23h and 4w }, songs_soiree ),
         ({ 18h-23h and 5w }, songs_soiree ),
         ({ 18h-23h and 6w }, songs_soiree ),
-        ({ 23h-06h and 4w }, songs_nuit ),
-        ({ 23h-06h and 5w }, songs_nuit ),
-        ({ 23h-06h and 6w }, songs_nuit ),
-        ({ 04h-06h }, songs_trance ),
-        ({ 06h-08h }, songs_matin ),
+
+        ({ 23h-23h59m59s and 4w }, songs_nuit ),
+        ({ 0h-6h and 5w }, songs_nuit ),
+        ({ 23h-23h59m59s and 5w }, songs_nuit ),
+        ({ 0h-6h and 6w }, songs_nuit ),
+        ({ 23h-23h59m59s and 6w }, songs_nuit ),
+        ({ 0h-6h and 7w }, songs_nuit ),
+
+        ({ 4h-6h }, songs_trance ),
+
+        ({ 6h-8h }, songs_matin ),
+
         ({ 16h20-17h }, songs_reggae ),
+
         ({ true }, songs_journee)
 ])
 
