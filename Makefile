@@ -33,8 +33,16 @@ re_main: broadcast
 	-$(ENV) fig kill main
 	-$(ENV) fig rm --force main
 	-$(ENV) fig up -d --no-deps main
-	-$(ENV) fig logs main
 	$(MAKE) admin
+	-$(ENV) fig logs main
+
+
+re_testing:
+	-$(ENV) fig kill testing
+	-$(ENV) fig rm --force testing
+	-$(ENV) fig up -d --no-deps testing
+	$(MAKE) admin
+	-$(ENV) fig logs testing
 
 
 re_broadcast: icecast
