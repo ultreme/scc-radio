@@ -13,10 +13,13 @@ admins:
   - ".*vik@online.vlq16.iliad.fr"
   - ".*uid65256@gateway.web.irccloud.com.*"
   - ".*uid65256@.*"
+  - ".*sid65256@.*"
 ignore:
   users:
     - ".*m1ch3l@.*"
     - ".*jordy@.*"
+    - ".*jordy2000@.*"
+    - ".*jordy3000@.*"
     - ".*bambite@.*"
     - ".*viktore@.*"
 cmdchar: ">"
