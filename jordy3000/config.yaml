@@ -44,9 +44,9 @@ ai:
   generalization: 50
   creativity: 75
   love: 
-    default: 70
+    default: 5
     for: 
-      otherBot: 70
+      otherBot: 1
   ngram: 
     length: 4
     depth: 8
@@ -55,8 +55,8 @@ ai:
     minwords: 3
     minkeys: 1
   partake: 
-    probability: 50
-    traffic: 50
+    probability: 5
+    traffic: 5
   context: 
     halflife: 600
     others: 0.25
