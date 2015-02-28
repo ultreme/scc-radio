@@ -179,3 +179,11 @@ jordy3000:
   
 feedme:
   build: feedme
+
+glados:
+  build: GLaDOS
+  volumes:
+  - GLaDOS/config:/usr/src/app/config
+  - GLaDOS/lib:/usr/src/app/lib
+  - GLaDOS/scripts:/usr/src/app/scripts
+  - GLaDOS/data:/usr/src/app/data

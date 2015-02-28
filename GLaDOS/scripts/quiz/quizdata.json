@@ -1,0 +1,117 @@
+{
+    "fr": {
+        "questions": 4242,
+        "created": "2014-02-12T00:55:53.257Z",
+        "entries": [
+            {
+                "category": "SCC",
+                "question": "Comment s'appelle le chanteur de Salut c'est cool qui commence par un V ?",
+                "answer": "Vadim"
+            }, {
+                "category": "SCC",
+                "question": "Comment s'appelle le chanteur de Salut c'est cool qui commence par un M ?",
+                "answer": "Martin"
+            }, {
+                "category": "SCC",
+                "question": "Comment s'appelle le chanteur de Salut c'est cool qui commence par un L ?",
+                "answer": "Louis"
+            }, {
+                "category": "SCC",
+                "question": "Comment s'appelle le chanteur de Salut c'est cool qui commence par un J ?",
+                "answer": "James"
+            }, {
+                "category": "SCC",
+                "question": "Interdit de jouer au [...] ?",
+                "answer": "Foot"
+            }, {
+                "category": "SCC",
+                "question": "Interdit de jouer au foot au [...]",
+                "answer": "Boulot"
+            }, {
+                "category": "SCC",
+                "question": "m1ch3l est il un robot ?",
+                "answer": "oui"
+            }, {
+                "category": "SCC",
+                "question": "ouimerci est elle un robot ?",
+                "answer": "non"
+            }, {
+                "category": "SCC",
+                "question": "jordy2000 est il un robot ?",
+                "answer": "oui"
+            }, {
+                "category": "SCC",
+                "question": "jordy3000 est il un robot ?",
+                "answer": "oui"
+            }, {
+                "category": "SCC",
+                "question": "qui de jordy2000 et jordy3000 est le plus poli ?",
+                "answer": "jordy3000"
+            }, {
+                "category": "SCC",
+                "question": "qui de jordy2000 et jordy3000 est le moins poli ?",
+                "answer": "jordy2000"
+            }, {
+                "category": "SCC",
+                "question": "vadim est il un robot ?",
+                "answer": "non"
+            }, {
+                "category": "SCC",
+                "question": "Quel était le thème de la première soirée à thème ?",
+		"answer": "Dinosaure"
+            }, {
+                "category": "SCC",
+                "question": "Est-ce que Ternet est le vrai nom de famille de Valentinternet ?",
+		"answer": "Non"
+            }, {
+                "category": "SCC",
+                "question": "Quel était le thème de la deuxième soirée à thème ?",
+		"answer": "Légume"
+            }, {
+                "category": "SCC",
+                "question": "Quel est le véritable prénom de croute ?",
+		"answer": "Nina"
+            }, {
+                "category": "SCC",
+                "question": "Quelle a été la première histoire d'amour du chat ?",
+		"answer": "Valentinternet et Ouimerci"
+            }, {
+                "category": "SCC",
+                "question": "Quel animal possédait Monique ?",
+		"answer": "Lapin"
+            }, {
+                "category": "SCC",
+                "question": "Qu'est-ce qu'on dit à Manfred ?",
+		"answer": "Merci"
+            }, {
+                "category": "SCC",
+                "question": "Quel légume a choisi chat pour la soirée légumes ?",
+		"answer": "Haricot"
+            }, {
+                "category": "SCC",
+                "question": "Complétez la phrase suivante: \"Dans ma clé USB j'ai une photo de toi, elle fait __\"",
+		"answer": "2"
+            }, {
+                "category": "SCC",
+                "question": "Complétez la phrase suivante: \"Le jardinier magicien n'a pas besoin d'__ dans son jardin\"",
+		"answer": "Engrais"
+            }, {
+                "category": "SCC",
+                "question": "Complétez la phrase suivante: \"1D ! 2D ! 3D ! ___ !\"",
+		"answer": "4D"
+            }, {
+                "category": "SCC",
+                "question": "Complétez la phrase suivante: \"il y a toujours des figures à faire, laisse-les flotter librement _____\"",
+		"answer": "Dans les airs"
+            }, {
+                "category": "SCC",
+                "question": "Complétez la phrase suivante: \"salut, j'aimerais savoir comment faire une ___\"",
+		"answer": "Bonne purée"
+            }, {
+                "category": "SCC",
+                "question": "Que fait-on bouger avec sa souris dans le super jeu multijoueur du calendrier de 2014 de Salut c'est cool ?",
+		"answer": "Lettre"
+            }
+        ]
+    }
+}

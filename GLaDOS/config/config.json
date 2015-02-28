@@ -1,0 +1,28 @@
+{
+    "userAgent": "Philemon",
+    "admin": ["sid65256@gateway/web/irccloud.com/x-hfmtnltruzramlsy", "moulaitue", "moul"],
+    "callsign": "!",
+    "scripts": [
+        "morse",
+        "stats",
+        "quiz",
+        "weather",
+        "wikipedia",
+        "cleverbot"
+    ],
+    "host": "irc.freenode.net",
+    "port": 6697,
+    "ssl": true,
+    "rejectUnauthorized": false,
+    "nickname": "philemon_",
+    "username": "philemon_",
+    "realname": "philemon_",
+    "password": "",
+    "channels": [
+        "#salutcestcool", "#moul"
+    ],
+    "quitmsg": "bye",
+    "autoRejoin": false,
+    "messageSplit": 512,
+    "autoConnect": false
+}
