@@ -95,21 +95,21 @@ songs_nuit = mksafe(
             )
         )
     )
-songs_matin = mksafe(
-    audio_to_stereo(
-        rewrite_metadata(
-            [
-                ("title", "$(title) (matin - radio Salut c'est cool)"),
-                ("comment", "http://www.salutcestcool.com")
-                ],
-            playlist.safe(
-                reload=600,
-                "/playlists/songs/matin",
-                mode="randomize",reload_mode="rounds"
-                )
-            )
-        )
-    )
+#songs_matin = mksafe(
+#    audio_to_stereo(
+#        rewrite_metadata(
+#            [
+#                ("title", "$(title) (matin - radio Salut c'est cool)"),
+#                ("comment", "http://www.salutcestcool.com")
+#                ],
+#            playlist.safe(
+#                reload=600,
+#                "/playlists/songs/matin",
+#                mode="randomize",reload_mode="rounds"
+#                )
+#            )
+#        )
+#    )
 songs_journee = mksafe(
     audio_to_stereo(
         rewrite_metadata(
@@ -198,7 +198,7 @@ calendar_mix = switch(track_sensitive=true, [
 
         ({ 4h-6h }, songs_trance ),
 
-        ({ 6h-8h }, songs_matin ),
+#        ({ 6h-8h }, songs_matin ),
 
         ({ 16h20-17h }, songs_reggae ),
 
