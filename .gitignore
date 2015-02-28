@@ -11,4 +11,6 @@
 /mysql/
 /backup-1and1/
 /admin/*.cache
-jordy/triplie.db
+triplie.db
+*.zip
+GLaDOS
