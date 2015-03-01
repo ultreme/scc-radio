@@ -89,3 +89,81 @@ Question pour un champion|De quoi a peur un hexakosioihexekontahexaphobe ?|666
 Question pour un champion|Durant quelle saison perd on le plus de cheveux ?|Automne
 Question pour un champion|Que collectionnent les cervalobélophiles |etiquettes de biere
 Question pour un champion|Combien de formes ont les nuggets de poulet McDonald's?|4
+Geek|Comment s'appelle le Hérisson bleu qui court très vite ?|Sonic
+Geek|Quel était le slogan de la marque SEGA ?|C'est plus fort que toi
+Geek|Combien y a t'il de couleurs dans un Rubiks Cube ?|6
+Geek|A combien de bits équivant 1 octet ?|8
+Geek|Combien de symboles utilise le système hexadécimal ?|16
+Geek|Combien de pièces différentes constituent un jeu d'échec ?|6
+Geek|Quel est le nom du personnage principal de Tomb Raider ?|Lara Croft
+Geek|Dans quel jeu évolue Gordon Freeman ?|Half Life
+Geek|Quel animal est représenté sur le logo du navigateur Mozilla Firefox ?|Panda roux
+Geek|Dans H2G2, quelle est la réponse sur la grande question sur la vie, l'univers et le reste ?|42
+Geek|Combien font 1+1 en binaire ?|10
+Geek|Quelle phrase est écrite sur la couverture du guide du voyageur galactique dans H2G2 ?|Don't Panic
+SCC|Qui a inventé la machine à découper le polystirène ?|Romain
+SCC|Qui est le 5ème Salut c'est cool ?|Romain
+Geek|De quel manga Sango Ku est-il le héros ?|Dragon Ball
+SCC|Lequel des salut c'est cool est sur le clip comprendre ?|James
+SCC|Qui ne supporte vraiment pas les gros mots ?|Martin
+SCC|Dans le simulateur de peche, qui joue le petit cochon de paille ?|Vadim
+SCC|Dans le simulateur de peche, qui joue le petit cochon de bois ?|Louis
+SCC|Dans le simulateur de peche, qui joue le petit cochon de pierre ?|Martin
+SCC|Dans le simulateur de peche, qui joue le role du grand méchant loup ?|James
+SCC|____ Gigabites, et du jamais vus encore, et toujours jamais vu, c'est bon, c'est maintenant, c'est chaud (Olala)|260
+Geek|A partir de quelle modèle de voiture, Doc construit une machine à voyager dans le temps ?|Delorean
+SCC|Quelle marque voit-on durant tout le clip vous-etes des pros ?|istockvideo
+SCC|Dans le clip d'internet de jouer au foot, avec quoi sont fait les jambes ?|Doigts
+SCC|Dans le clip Trick global, que fait James devant un camion de pompier dans la rue ?|Break-dance
+SCC|Dans le clip Trick Global, qui fait des ricochets à travers plusieurs flaques de boue ?|Louis
+SCC|Comment s'appelle la figure que font les salut c'est cool en étant penchés les uns sur les autres ?|Crabe
+SCC|Dans Trick Global, sur quel légume fetes-t'on un anniversaire ?|Concombre
+SCC|Dans Trick Global, avec quoi éteint-on une cigarette ?|Porte automatique
+SCC|Dans Trick Global, de quelle couleur est le pantalon de Martin ?|Vert
+SCC|Dans Trick Global, de quelle couleur est la mer à la fin ?|Bleu
+SCC|Comment est la tessiture de Daniel Balavoine dans la retrospective faite par Salut c'est cool ?|haute
+SCC|Les hommes vont alors cultiver des céréales. C'est l'apparition de l'agriculture vers ______ avant JC.|8000
+SCC|Cherchez l'intru: Le lait ? L'huile ? Le beurre ? La crème ?|Huile
+SCC|Comment s'appelle la femme dans la chanson "Ces sentiments" ?|Brigitte
+SCC|Que remercient Salut c'est cool d'etre là ?|Nature
+SCC|Que donnent à manger aux fourmis Salut c'est cool dans leur clip Techno toujours pareil ?|Bonbons
+SCC|Dans la chanson "Pierre", quel est le mot le plus souvent réptété ?|Pierre
+SCC|Qu'est ce qui est invertébré dans Acera ?|Gastéropode
+SCC|Salam aleykoum koum, c'est le kiff dans le club du ______|désert
+SCC|Qu'est-ce qui est brillant comme la peau d'un ado ?|Cristal
+SCC|En quelle année a décédé dans un accident d'avion un étranger qui a déposé une somme au Burkina Faso ?|2003
+SCC|Quel est le montant énorme trouvé par Paul Compaoré sur le compte en banque ?|12500000
+SCC|Il y a des milliers d'étoiles dans le ciel, mais seulement ?|maman
+SCC|Que faut'il pour mettre ce fond d'écran ?|cran
+SCC|Sur quel air de musique un footballeur doit il tout faire ?|Vivaldi
+SCC|Latin, langue ____ ?|morte
+SCC|Dalmate, langue ____ ?|morte
+SCC|Akkadien, langue ____ ?|morte
+SCC|Phénicien, langue ____ ?|morte
+SCC|Cambrien, langue ____ ?|morte
+SCC|Gaulois, langue ____ ?|morte
+SCC|Lombard, langue ____ ?|morte
+SCC|Vandale, langue ____ ?|morte
+SCC|Slovince, langue ____ ?|morte
+SCC|Sélonien, langue ____ ?|morte
+SCC|Vieux slave, langue ____ ?|morte
+SCC|Celtibère, langue ____ ?|morte
+SCC|Galate, langue ____ ?|morte
+SCC|Vieux-prussien, langue ____ ?|morte
+SCC|Burgonde, langue ____ ?|morte
+SCC|Gotique, langue ____ ?|morte
+SCC|Français, langue ____ ?|vivante
+SCC|Anglais, langue ____ ?|vivante
+SCC|Italien, langue ____ ?|vivante
+SCC|Espagnole, langue ____ ?|vivante
+SCC|Portugais, langue ____ ?|vivante
+SCC|Allemand, langue ____ ?|vivante
+SCC|Russe, langue ____ ?|vivante
+SCC|Dans "Vous etes des pros", qu'allons nous faire ensemble ?|bon travail
+SCC|Quand c'est l'hiver dehors, quelle saison fait il dedans ?|été
+SCC|Qui a le plus une tete de bébé dans Salut c'est cool ?|Martin
+SCC|Devant quel engin, James fait il une danse avec son bras ?|Mobylette
+SCC|Qui chante en introduction dans la chanson vacances ?|Martin
+SCC|De quel pays vient Paul Compaoré ?|Burkina Faso
+SCC|Quelle est la profession de Paul Compaoré ?|Banquier
+SCC|Faut il faire confiance à Paul Compaoré ?|Non
