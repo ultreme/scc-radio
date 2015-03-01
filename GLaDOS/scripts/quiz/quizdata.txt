@@ -1,10 +1,25 @@
 Flim sur le cyclimse|Complète: Abitbol ! Alors comme ça tu as été élu l’homme le plus ________ du monde ! Laisse-moi rire ! Style le grand playboy des fonds marins, genre qui fait rêver les ménagères.|classe
 Flim sur le cyclimse|Complète: Le train de tes ________ roule sur le rail de mon indifférence.|injures
-Flim sur le cyclimse|Il est déjà 9 heures, là ? Sur mon front y a pas marqué ____________ !|Radio
+Flim sur le cyclimse|Il est déjà 9 heures, là ? Sur mon front y a pas marqué _____-réveil !|Radio
 Flim sur le cyclimse|J’aimerais bien que tu restes. On va manger des _______. Tu entends ? Des _______ ! C’est tout ce que ça te fait quand je te dis qu’on va manger des ______ ?|Chips
 Flim sur le cyclimse|Tu fais un amalgame entre la __________ et la classe !|coquetterie
 Math|1+1+1+1+1+1+1+1+1+1|10
 Math|1+1+1-1+1+1+1+1-1+1|6
+Math|1+1+1-1-1+1+1+1-1+1|4
+Math|1+1+1-1+1-1-1+1-1+1|2
+Math|1+1+1-1+1-1-1-1-1+1|0
+Math|1+1+1+1+1+1+7+1+1+1|16
+Math|1+1+1+1+1+1+7+1+1+1|16
+Math|1+1+1*1+1+1+1+1+1+1|9
+Math|1+1+1*1+1+1+1-1+1+1|7
+Math|1+1+1*1+1+1+1*1+1+1|8
+Niveau CP|Quelle est la 12ème lettre de l'alphabet ?|L
+Niveau CP|Quelle est la 13ème lettre de l'alphabet ?|M
+Niveau CP|Quelle est la 14ème lettre de l'alphabet ?|N
+Niveau CP|Quelle est la lettre avant X dans l'alphabet ?|W
+Niveau Collège|Que donne le verbe pouvoir à la première personne du pluriel à l'imparfait du subjonctif ?|que nous pussions
+Niveau Collège|Que donne le verbe danser à la deuxième personne du singulier à l'imparfait du subjonctif ?|que tu dansasses
+Niveau Collège|Que donne le verbe croire à la deuxième personne du pluriel au plus que parfait du subjonctif ?|que vous eussiez cru
 OSS117|J’aime me _______ la biscotte !|beurrer
 Question pour un champion",o|Combien la langue contient-tlle de muscles ?|17
 Question pour un champion|0 + 0 = ?|TOTO
@@ -19,6 +34,8 @@ Question pour un champion|Quelle est la forme de la terre ?|patatoidale
 Question pour un champion|avec quel pays la France patage sa plus grande frontière terrestre ? (indice, c'est en terre Adélie Antarctique)|Australie
 Question pour un champion|de quel animal, la levrette est la femelle ?|levrier
 SCC|Combien font jordy2000 + jordy3000 ?|jordy5000
+SCC|Comment s'appelle le chanteur de Salut c'est cool qui termine par un N ?|Martin
+SCC|Comment s'appelle le chanteur de Salut c'est cool qui termine par un M ?|Vadim
 SCC|Comment s'appelle le chanteur de Salut c'est cool qui commence par un J ?|James
 SCC|Comment s'appelle le chanteur de Salut c'est cool qui commence par un L ?|Louis
 SCC|Comment s'appelle le chanteur de Salut c'est cool qui commence par un M ?|Martin
@@ -27,7 +44,7 @@ SCC|Complétez la phrase suivante: "1D ! 2D ! 3D ! ___ !"|4D
 SCC|Complétez la phrase suivante: "Dans ma clé USB j'ai une photo de toi, elle fait __"|2
 SCC|Complétez la phrase suivante: "Le jardinier magicien n'a pas besoin d'__ dans son jardin"|Engrais
 SCC|Complétez la phrase suivante: "il y a toujours des figures à faire, laisse-les flotter librement _____"|Dans les airs
-SCC|Complétez la phrase suivante: "salut, j'aimerais savoir comment faire une ___"|Bonne puree
+SCC|Complétez la phrase suivante: "salut, j'aimerais savoir comment faire une ___"|Bonne purée
 SCC|De la truite au sillure, les poissons sont __________|numeriques
 SCC|Est-ce que Ternet est le vrai nom de famille de Valentinternet ?|Non
 SCC|Il est un maboul. On l'appelle la _____|brute

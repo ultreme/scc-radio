@@ -190,10 +190,10 @@ Quiz.prototype.isRight = function (text) {
             this.debug('search: %s', answer);
             return true;
         }
-        text = text.replace(/[äöüß]/g, function ($0) {
+        text = text.replace(/[äöüßéèà]/g, function ($0) {
             return tr[$0];
         });
-        answer = answer.replace(/[äöüß]/g, function ($0) {
+        answer = answer.replace(/[äöüßéèà]/g, function ($0) {
             return tr[$0];
         });
 
