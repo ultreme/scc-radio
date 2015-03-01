@@ -127,8 +127,83 @@
                 "category": "SCC",
                 "question": "Tu as beau avoir un casque, et une visère, tu vas te faire bouffer par les ______-______",
 		"answer": "chauve-souris"
+	    }, {
+                "category": "Question pour un champion",
+                "question": "0 + 0 = ?",
+		"answer": "TOTO"
+            }, {
+                "category": "Flim sur le cyclimse",
+                "question": "Complète: Abitbol ! Alors comme ça tu as été élu l’homme le plus ________ du monde ! Laisse-moi rire ! Style le grand playboy des fonds marins, genre qui fait rêver les ménagères.",
+		"answer": "classe"
+            }, {
+                "category": "Flim sur le cyclimse",
+                "question": "Complète: Le train de tes ________ roule sur le rail de mon indifférence.",
+		"answer": "injures"
+            }, {
+                "category": "Flim sur le cyclimse",
+                "question": "J’aimerais bien que tu restes. On va manger des _______. Tu entends ? Des _______ ! C’est tout ce que ça te fait quand je te dis qu’on va manger des ______ ?",
+		"answer": "Chips"
+            }, {
+                "category": "Flim sur le cyclimse",
+                "question": "Tu fais un amalgame entre la __________ et la classe !",
+		"answer": "coquetterie"
+            }, {
+                "category": "Flim sur le cyclimse",
+                "question": "Il est déjà 9 heures, là ? Sur mon front y a pas marqué ____________ !",
+		"answer": "Radio"
+            }, {
+                "category": "SCC",
+                "question": "J'étais votre _____ avant de devenir votre roi, père.",
+		"answer": "fils"
+            }, {
+                "category": "SCC",
+                "question": "J'étais votre fils avant de devenir votre _____, père.",
+		"answer": "roi"
+            }, {
+                "category": "SCC",
+                "question": "Les sentiments, c'est dur à expliquer. Mais ça dépend. de quoi ? _______.",
+		"answer": "tout"
+            }, {
+                "category": "SCC",
+                "question": "Je suis une ______ je ponds des œufs pour œufs",
+		"answer": "poule"
+            }, {
+                "category": "SCC",
+                "question": "Peu m'importe que tu ne saches pas rigoler. Et que tu ne puisses pas ________",
+		"answer": "écouter"
+            }, {
+                "category": "SCC",
+                "question": "Peu m'importe que tu ne saches pas ________. Et que tu ne puisses pas m'écouter",
+		"answer": "rigoler"
+            }, {
+                "category": "OSS117",
+                "question": "J’aime me _______ la biscotte !",
+		"answer": "beurrer"
+            }, {
+                "category": "Question pour un champion",
+                "question": "Quelle est la forme de la terre ?",
+		"answer": "patatoidale"
+            }, {
+                "category": "Question pour un champion",
+                "question": "Les poissons nagent-ils plus ou moins vite s'ils boivent de l'alcool ?",
+		"answer": "plus"
+            }, {
+                "category": "Question pour un champion",
+                "question": "Quel est le terme medical pour la gueule de bois ?",
+		"answer": "veisalgie"
+            }, {
+                "category": "Question pour un champion",ou 
+                "question": "Combien la langue contient-tlle de muscles ?",
+		"answer": "17"
+            }, {
+                "category": "Math",
+                "question": "1+1+1+1+1+1+1+1+1+1",
+		"answer": "10"
+            }, {
+                "category": "Math",
+                "question": "1+1+1-1+1+1+1+1-1+1",
+		"answer": "6"
             }
-            
         ]
     }
 }
