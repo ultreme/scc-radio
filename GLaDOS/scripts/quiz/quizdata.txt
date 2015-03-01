@@ -186,3 +186,4 @@ SCC|Quelle est la profession de Paul Compaoré ?|Banquier
 SCC|Faut il faire confiance à Paul Compaoré ?|Non
 SCC|et tu ____ , et tu ____|jump
 Question pour un champion|carglass répare, garglass ______|remplace
+Pixar|[toys story] mais c'est de l'art gros ____|lard
