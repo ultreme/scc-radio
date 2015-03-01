@@ -8,9 +8,17 @@ Math|1+1+1-1+1+1+1+1-1+1|6
 OSS117|J’aime me _______ la biscotte !|beurrer
 Question pour un champion",o|Combien la langue contient-tlle de muscles ?|17
 Question pour un champion|0 + 0 = ?|TOTO
+Question pour un champion|Combien de muscles contient la langues ?|17
+Question pour un champion|De combien de fois sa taille la blatte peut faire un bond ? 5 15 25 35 45 55 65 75 85 ou 95 ?|45
+Question pour un champion|De quelle superamas de galaxies appartient la voie lactée ?|Laniakea
+Question pour un champion|Le son se propage t'il plus vite dans l'eau ou dans l'air ? (indice, en moyenne 5 fois)|eau
 Question pour un champion|Les poissons nagent-ils plus ou moins vite s'ils boivent de l'alcool ?|plus
+Question pour un champion|Par quelle partie de leur corps les papillons sentent les odeurs ?|Antennes
 Question pour un champion|Quel est le terme medical pour la gueule de bois ?|veisalgie
 Question pour un champion|Quelle est la forme de la terre ?|patatoidale
+Question pour un champion|avec quel pays la France patage sa plus grande frontière terrestre ? (indice, c'est en terre Adélie Antarctique)|Australie
+Question pour un champion|de quel animal, la levrette est la femelle ?|lévrier
+SCC|Combien font jordy2000 + jordy3000 ?|jordy5000
 SCC|Comment s'appelle le chanteur de Salut c'est cool qui commence par un J ?|James
 SCC|Comment s'appelle le chanteur de Salut c'est cool qui commence par un L ?|Louis
 SCC|Comment s'appelle le chanteur de Salut c'est cool qui commence par un M ?|Martin
@@ -45,10 +53,18 @@ SCC|Quel était le thème de la première soirée à thème ?|Dinosaure
 SCC|Quelle a été la première histoire d'amour du chat ?|Valentinternet et Ouimerci
 SCC|Tu as beau avoir un casque, et une visère, tu vas te faire bouffer par les ______-______|chauve-souris
 SCC|Tu as beau avoir un casque, et une visère, tu vas te faire bouffer par les ______-______|chauve-souris
+SCC|de quel skateur, salut c'est cool fait l'hommage dans une de leur chanson ?|Tony Hawk
 SCC|jordy2000 est il un robot ?|oui
 SCC|jordy3000 est il un robot ?|oui
 SCC|m1ch3l est il un robot ?|oui
 SCC|ouimerci est elle un robot ?|non
+SCC|quel chanteur de salut c'est cool est le plus blond (naturellement)?|Vadim
+SCC|quel chanteur de salut c'est cool n'a pas de lunettes ?|Vadim
+SCC|quel chanteur de salut c'est cool n'est ni vadim, ni martin, ni james ?|Louis
+SCC|quel chanteur de salut c'est cool rime avec centime ?|Vadim
+SCC|quel chanteur de salut c'est cool rime avec m&m's ?|James
+SCC|quel chanteur de salut c'est cool rime avec main ?|Martin
+SCC|quel chanteur de salut c'est cool rime avec souris ?|Louis
 SCC|qui de jordy2000 et jordy3000 est le moins poli ?|jordy2000
 SCC|qui de jordy2000 et jordy3000 est le plus poli ?|jordy3000
 SCC|vadim est il un robot ?|non
