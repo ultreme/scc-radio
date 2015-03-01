@@ -109,8 +109,8 @@ Quiz.prototype.getNewQuestion = function () {
 
     this.debug('%j', this.question);
 
-    this.channel.say('[%s] La question N. %s est:', ircC.bold('QUIZ'), ircC.bold(this.questioncounter));
-    this.channel.say('[%s] %s', ircC.bold('QUIZ'), this.getQuestionString());
+    this.channel.say('[%s] La question N. %s est: %s', ircC.bold('QUIZ'), ircC.bold(this.questioncounter), this.getQuestionString());
+    //this.channel.say('[%s] %s', ircC.bold('QUIZ'), this.getQuestionString());
     this.startHints();
 };
 Quiz.prototype.getTotalQuestionCount = function () {
@@ -181,6 +181,9 @@ Quiz.prototype.isRight = function (text) {
             'ä': 'ae',
             'ü': 'ue',
             'ö': 'oe',
+            'é': 'e',
+            'è': 'e',
+            'à': 'a',
             'ß': 'ss'
         };
         if (text.search(answer) !== -1) {
@@ -444,16 +447,13 @@ module.exports = function (scriptLoader) {
                     score = quiz.addScore(nick, points),
                     rank = quiz.getRank(nick);
                 question.solved = true;
-                event.channel.say('[%s] %s a repondu a la question en %s secondes <%s> (+%s) classement %s.',
+                event.channel.say('[%s] %s a repondu a la question en %s <%s> (+%s) classement %s. La reponse etait: %s',
                     ircC.bold('QUIZ'),
                     ircC.bold(nick),
                     ircC.bold(time),
                     ircC.bold(score),
                     ircC.bold(points),
-                    ircC.bold(rank)
-                );
-                event.channel.say('[%s] La reponse etait: %s',
-                    ircC.bold('QUIZ'),
+                    ircC.bold(rank),
                     ircC.bold(quiz.getAnswer())
                 );
                 quiz.delayNewQuestion();
