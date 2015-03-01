@@ -203,7 +203,24 @@
                 "category": "Math",
                 "question": "1+1+1-1+1+1+1+1-1+1",
 		"answer": "6"
+	    }, {
+                "category": "SCC",
+                "question": "Pas de neige sur le mont ___",
+		"answer": "fuji"
+            }, {
+                "category": "SCC",
+                "question": "Il est un maboul. On l'appelle la _____",
+		"answer": "brute"
+            }, {
+                "category": "SCC",
+                "question": "De la truite au sillure, les poissons sont __________",
+		"answer": "numériques"
+            }, {
+                "category": "SCC",
+                "question": "Tu as beau avoir un casque, et une visère, tu vas te faire bouffer par les ______-______",
+		"answer": "chauve-souris"
             }
+            
         ]
     }
 }
