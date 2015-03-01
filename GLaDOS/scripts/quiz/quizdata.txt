@@ -17,7 +17,7 @@ Question pour un champion|Par quelle partie de leur corps les papillons sentent 
 Question pour un champion|Quel est le terme medical pour la gueule de bois ?|veisalgie
 Question pour un champion|Quelle est la forme de la terre ?|patatoidale
 Question pour un champion|avec quel pays la France patage sa plus grande frontière terrestre ? (indice, c'est en terre Adélie Antarctique)|Australie
-Question pour un champion|de quel animal, la levrette est la femelle ?|lévrier
+Question pour un champion|de quel animal, la levrette est la femelle ?|levrier
 SCC|Combien font jordy2000 + jordy3000 ?|jordy5000
 SCC|Comment s'appelle le chanteur de Salut c'est cool qui commence par un J ?|James
 SCC|Comment s'appelle le chanteur de Salut c'est cool qui commence par un L ?|Louis
@@ -27,11 +27,9 @@ SCC|Complétez la phrase suivante: "1D ! 2D ! 3D ! ___ !"|4D
 SCC|Complétez la phrase suivante: "Dans ma clé USB j'ai une photo de toi, elle fait __"|2
 SCC|Complétez la phrase suivante: "Le jardinier magicien n'a pas besoin d'__ dans son jardin"|Engrais
 SCC|Complétez la phrase suivante: "il y a toujours des figures à faire, laisse-les flotter librement _____"|Dans les airs
-SCC|Complétez la phrase suivante: "salut, j'aimerais savoir comment faire une ___"|Bonne purée
-SCC|De la truite au sillure, les poissons sont __________|numériques
-SCC|De la truite au sillure, les poissons sont __________|numériques
+SCC|Complétez la phrase suivante: "salut, j'aimerais savoir comment faire une ___"|Bonne puree
+SCC|De la truite au sillure, les poissons sont __________|numeriques
 SCC|Est-ce que Ternet est le vrai nom de famille de Valentinternet ?|Non
-SCC|Il est un maboul. On l'appelle la _____|brute
 SCC|Il est un maboul. On l'appelle la _____|brute
 SCC|Interdit de jouer au [...] ?|Foot
 SCC|Interdit de jouer au foot au [...]|Boulot
@@ -39,25 +37,24 @@ SCC|J'étais votre _____ avant de devenir votre roi, père.|fils
 SCC|J'étais votre fils avant de devenir votre _____, père.|roi
 SCC|Je suis une ______ je ponds des œufs pour œufs|poule
 SCC|Les sentiments, c'est dur à expliquer. Mais ça dépend. de quoi ? _______.|tout
-SCC|Où trouve-t-on des concours de tuning ?|Sur le parking d'auchan
-SCC|Pas de neige sur le mont ___|fuji
+SCC|Où trouve-t-on des concours de tuning ?|Auchan
 SCC|Pas de neige sur le mont ___|fuji
 SCC|Peu m'importe que tu ne saches pas ________. Et que tu ne puisses pas m'écouter|rigoler
-SCC|Peu m'importe que tu ne saches pas rigoler. Et que tu ne puisses pas ________|écouter
+SCC|Peu m'importe que tu ne saches pas rigoler. Et que tu ne puisses pas ________|ecouter
 SCC|Qu'est-ce qu'on dit à Manfred ?|Merci
-SCC|Que faire avec James en Chine ?|Du vélo
-SCC|Que faire avec James en Chine ?|Un barbecue
+SCC|Que faire avec James en Chine ?|velo
+SCC|Que faire avec James en Chine ?|barbecue
 SCC|Que fait-on bouger avec sa souris dans le super jeu multijoueur du calendrier de 2014 de Salut c'est cool ?|Lettre
 SCC|Quel animal possédait Monique ?|Lapin
 SCC|Quel est le véritable prénom de croute ?|Nina
 SCC|Quel légume a choisi chat pour la soirée légumes ?|Haricot
-SCC|Quel était le thème de la deuxième soirée à thème ?|Légume
+SCC|Quel était le thème de la deuxième soirée à thème ?|Legume
 SCC|Quel était le thème de la première soirée à thème ?|Dinosaure
 SCC|Quelle a été la première histoire d'amour du chat ?|Valentinternet et Ouimerci
 SCC|Tu as beau avoir un casque, et une visère, tu vas te faire bouffer par les ______-______|chauve-souris
 SCC|Tu as beau avoir un casque, et une visère, tu vas te faire bouffer par les ______-______|chauve-souris
-SCC|Tu es dans le salon, où veux-tu aller ?|Dans le salon
-SCC|Tu es dans le salon, où veux-tu aller ?|au Burkina Faso
+SCC|Tu es dans le salon, où veux-tu aller ?|salon
+SCC|Tu es dans le salon, où veux-tu aller ?|Burkina Faso
 SCC|de quel skateur, salut c'est cool fait l'hommage dans une de leur chanson ?|Tony Hawk
 SCC|jordy2000 est il un robot ?|oui
 SCC|jordy3000 est il un robot ?|oui
