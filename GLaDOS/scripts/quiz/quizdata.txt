@@ -63,6 +63,14 @@ SCC|ouimerci est elle un robot ?|non
 SCC|quel chanteur de salut c'est cool est le plus blond (naturellement)?|Vadim
 SCC|quel chanteur de salut c'est cool n'a pas de lunettes ?|Vadim
 SCC|quel chanteur de salut c'est cool n'est ni vadim, ni martin, ni james ?|Louis
+SCC|quel chanteur de salut c'est cool n'est ni louis, ni martin, ni james ?|Vadim
+SCC|quel chanteur de salut c'est cool n'est ni vadim, ni louis, ni james ?|Martin
+SCC|quel chanteur de salut c'est cool n'est ni vadim, ni martin, ni louis ?|James
+SCC|quel chanteur de salut c'est cool a un tatouage Nike ?|James
+SCC|quel chanteur de salut c'est cool a été diplomé en 2014 ?|Martin
+SCC|Que veut dire Î¡°¤¸ª£¨ en Kryptos ?|Sandwich
+SCC|Que veut dire Å¡¯¢©° en Kryptos ?|Jambon
+SCC|Que veut dire Æ¥µ£¨¶± en Kryptos ?|Ketchup
 SCC|quel chanteur de salut c'est cool rime avec centime ?|Vadim
 SCC|quel chanteur de salut c'est cool rime avec m&m's ?|James
 SCC|quel chanteur de salut c'est cool rime avec main ?|Martin
@@ -70,3 +78,14 @@ SCC|quel chanteur de salut c'est cool rime avec souris ?|Louis
 SCC|qui de jordy2000 et jordy3000 est le moins poli ?|jordy2000
 SCC|qui de jordy2000 et jordy3000 est le plus poli ?|jordy3000
 SCC|vadim est il un robot ?|non
+SCC|Quel chanteur de Salut c'est cool mange du saucisson et boit un ricard dans un clip ?|James
+SCC|Que veut dire "DB" ?|Daniel Balavoine
+Question pour un champion|De quel pays vient le mot "bacon" ?|France
+Question pour un champion|De combien de pourcents d'eau est composée la Bière ? 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 ?|90
+Question pour un champion|De quoi PMU est t'il l'acronyme ?|Paris Mutuel Urbain
+Question pour un champion|George W Bush a t'il été Cheerleader ou Rugbyman ?|Cheerleader
+Question pour un champion|Peut-on etre gauche de l'oreille et de l'oeil?|Oui
+Question pour un champion|De quoi a peur un hexakosioihexekontahexaphobe ?|666
+Question pour un champion|Durant quelle saison perd on le plus de cheveux ?|Automne
+Question pour un champion|Que collectionnent les cervalobélophiles |etiquettes de biere
+Question pour un champion|Combien de formes ont les nuggets de poulet McDonald's?|4
