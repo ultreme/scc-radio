@@ -377,6 +377,9 @@ module.exports = function (scriptLoader) {
         });
     });
     scriptLoader.on('command', 'quizrank', function (event) {
+        if (!event.channel.userHasMinMode(event.user, '%')) {
+            return event.user.notice('PAS LE DROIT');
+        }
         var scores = quiz.getToplist(),
             userscore = {
                 'nick': event.user.getNick(),
@@ -385,14 +388,15 @@ module.exports = function (scriptLoader) {
             },
             index;
         for (index = 0; index < scores.length; index += 1) {
-            if (index < 5) {
+            if (index < 10) {
                 userscore.score = 0;
-                event.user.notice('[%s] %s - %spt',
+                event.channel.say('[%s] %s - %spt',
                     index + 1,
                     scores[index].nick === event.user.getNick() ? ircC.bold(scores[index].nick) : scores[index].nick,
                     scores[index].score
                 );
             } else {
+		continue;
                 if (scores[index].nick === event.user.getNick()) {
                     userscore.score = scores[index].score;
                     userscore.index = index + 1;
@@ -400,10 +404,10 @@ module.exports = function (scriptLoader) {
             }
         }
         if (userscore.score !== 0) {
-            if (scores.length > 5 && userscore.index !== 6) {
-                event.user.notice('...');
-            }
-            event.user.notice('[%s] %s - %spt',
+            //if (scores.length > 5 && userscore.index !== 6) {
+            //    event.user.notice('...');
+            //}
+            event.channel.say('[%s] %s - %spt',
                 userscore.score === -1 ? (scores.length + 1) : userscore.index,
                 ircC.bold(userscore.nick),
                 userscore.score
