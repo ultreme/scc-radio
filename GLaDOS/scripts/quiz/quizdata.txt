@@ -187,3 +187,8 @@ SCC|Faut il faire confiance à Paul Compaoré ?|Non
 SCC|et tu ____ , et tu ____|jump
 Question pour un champion|carglass répare, garglass ______|remplace
 Pixar|[toys story] mais c'est de l'art gros ____|lard
+Random|Question spéciale pour hat_:       OUI ou NON ???|OUI
+Random|Question spéciale pour hat_:       OUI ou NON ???|NON
+Vitesse|Le premier qui dit "oui" !|oui
+Vitesse|Le premier qui dit "non" !|non
+Vitesse|Le premier qui dit "une banane bleue" !|une banane bleue
