@@ -19,6 +19,10 @@ Niveau CP|Quelle est la 14ème lettre de l'alphabet ?|N
 Niveau CP|Quelle est la lettre avant X dans l'alphabet ?|W
 Niveau Collège|Que donne le verbe pouvoir à la première personne du pluriel à l'imparfait du subjonctif ?|que nous pussions
 Niveau Collège|Que donne le verbe danser à la deuxième personne du singulier à l'imparfait du subjonctif ?|que tu dansasses
+Niveau Collège|Que donne le verbe danser à la première personne du pluriel au plus que parfait du subjonctif ?|que nous eussions dansé
+Niveau Collège|Que donne le verbe danser à la deuxième personne du pluriel à l'imparfait du subjonctif ?|que vous dansassiez
+Niveau Collège|Que donne le verbe rigoler à la première personne du pluriel au plus que parfait de l'indicatif ?|nous avions rigolé
+Niveau Collège|Que donne le verbe s'amuser à la troisième personne du pluriel féminin à l'imparfait du subjonctif ?|qu'elles s'amusassent
 Niveau Collège|Que donne le verbe croire à la deuxième personne du pluriel au plus que parfait du subjonctif ?|que vous eussiez cru
 OSS117|J’aime me _______ la biscotte !|beurrer
 Question pour un champion",o|Combien la langue contient-tlle de muscles ?|17
