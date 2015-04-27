@@ -26,65 +26,65 @@ ENV ?=			HARBOR_PASSWORD=$(HARBOR_PASSWORD) \
 .PHONY: dev re_main re_broadcast re_icecast main broadcast icecast admin piwik piwikmysql dashing ftpd
 
 dev:	chmod broadcast
-	$(ENV) fig up --no-deps main
+	$(ENV) docker-compose up --no-deps main
 
 
 re_main: broadcast
-	-$(ENV) fig kill main
-	-$(ENV) fig rm --force main
-	-$(ENV) fig up -d --no-deps main
+	-$(ENV) docker-compose kill main
+	-$(ENV) docker-compose rm --force main
+	-$(ENV) docker-compose up -d --no-deps main
 	$(MAKE) admin
-	-$(ENV) fig logs main
+	-$(ENV) docker-compose logs main
 
 
 re_testing:
-	-$(ENV) fig kill testing
-	-$(ENV) fig rm --force testing
-	-$(ENV) fig up -d --no-deps testing
+	-$(ENV) docker-compose kill testing
+	-$(ENV) docker-compose rm --force testing
+	-$(ENV) docker-compose up -d --no-deps testing
 	$(MAKE) admin
-	-$(ENV) fig logs testing
+	-$(ENV) docker-compose logs testing
 
 
 re_broadcast: icecast
-	-$(ENV) fig kill broadcast
-	-$(ENV) fig rm --force broadcast
-	-$(ENV) fig up -d --no-deps broadcast
-	-$(ENV) fig logs broadcast
+	-$(ENV) docker-compose kill broadcast
+	-$(ENV) docker-compose rm --force broadcast
+	-$(ENV) docker-compose up -d --no-deps broadcast
+	-$(ENV) docker-compose logs broadcast
 
 
 re_icecast:
-	-$(ENV) fig kill icecast
-	-$(ENV) fig rm --force icecast
-	-$(ENV) fig up -d --no-deps icecast
-	-$(ENV) fig logs icecast
+	-$(ENV) docker-compose kill icecast
+	-$(ENV) docker-compose rm --force icecast
+	-$(ENV) docker-compose up -d --no-deps icecast
+	-$(ENV) docker-compose logs icecast
 
 
 main:	broadcast
-	$(ENV) fig up -d --no-deps --no-recreate $@
+	$(ENV) docker-compose up -d --no-deps --no-recreate $@
 
 broadcast: icecast
-	$(ENV) fig up -d --no-deps --no-recreate $@
+	$(ENV) docker-compose up -d --no-deps --no-recreate $@
 
 icecast:
-	$(ENV) fig up -d --no-deps --no-recreate $@
+	$(ENV) docker-compose up -d --no-deps --no-recreate $@
 
 
 piwik:	piwikmysql
-	-$(ENV) fig kill $@
-	-$(ENV) fig rm --force $@
-	$(ENV) fig up -d --no-deps $@
-	$(ENV) fig logs $@
+	-$(ENV) docker-compose kill $@
+	-$(ENV) docker-compose rm --force $@
+	$(ENV) docker-compose up -d --no-deps $@
+	$(ENV) docker-compose logs $@
 
 
 admin:
-	-$(ENV) fig kill $@
-	-$(ENV) fig rm --force $@
-	$(ENV) fig up -d --no-deps $@
-	#$(ENV) fig logs $@
+	-$(ENV) docker-compose kill $@
+	-$(ENV) docker-compose rm --force $@
+	$(ENV) docker-compose up -d --no-deps $@
+	#$(ENV) docker-compose logs $@
 
 
 piwikmysql:
-	$(ENV) fig up -d --no-recreate $@
+	$(ENV) docker-compose up -d --no-recreate $@
 
 
 piwikmysql-client: piwikmysql
@@ -92,16 +92,16 @@ piwikmysql-client: piwikmysql
 
 
 piwikcron:
-	-$(ENV) fig kill $@
-	$(ENV) fig up -d $@
+	-$(ENV) docker-compose kill $@
+	$(ENV) docker-compose up -d $@
 
 
 kill:
-	fig kill
+	docker-compose kill
 
 
 clean:	kill
-	fig --force rm
+	docker-compose --force rm
 
 
 chmod:
@@ -117,14 +117,14 @@ sync-1and1:
 
 
 dashing:
-	-$(ENV) fig kill $@
-	-$(ENV) fig rm --force $@
-	$(ENV) fig up -d --no-deps $@
-	$(ENV) fig logs $@
+	-$(ENV) docker-compose kill $@
+	-$(ENV) docker-compose rm --force $@
+	$(ENV) docker-compose up -d --no-deps $@
+	$(ENV) docker-compose logs $@
 
 
 ftpd:
-	-$(ENV) fig kill $@
-	-$(ENV) fig rm --force $@
-	$(ENV) fig up -d --no-deps $@
-	$(ENV) fig logs $@
+	-$(ENV) docker-compose kill $@
+	-$(ENV) docker-compose rm --force $@
+	$(ENV) docker-compose up -d --no-deps $@
+	$(ENV) docker-compose logs $@
