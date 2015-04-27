@@ -18,7 +18,17 @@ set("decoding.buffer_length",10.)
 
 
 # INPUTS
-clock = mksafe(audio_to_stereo(playlist.safe(reload=3600, "/playlists/singles/", mode="randomize",reload_mode="rounds")))
+clock = mksafe(
+    audio_to_stereo(
+        playlist.safe(
+            reload=3600,
+            "/playlists/singles/",
+            mode="randomize",
+            reload_mode="rounds"
+        )
+    )
+)
+
 jingles = mksafe(
     rewrite_metadata(
         [
