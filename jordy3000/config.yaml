@@ -22,6 +22,7 @@ ignore:
     - ".*jordy3000@.*"
     - ".*bambite@.*"
     - ".*viktore@.*"
+    - ".*lollipop@.*"
 cmdchar: ">"
 vhost: null
 db: triplie.db
@@ -55,8 +56,8 @@ ai:
     minwords: 3
     minkeys: 1
   partake: 
-    probability: 5
-    traffic: 5
+    probability: 8
+    traffic: 8
   context: 
     halflife: 600
     others: 0.25
