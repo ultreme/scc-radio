@@ -1,9 +1,9 @@
 main:
   image: moul/liquidsoap
   volumes:
-  - config:/config
-  - playlists:/playlists
-  - data:/data
+  - ./config:/config
+  - ./playlists:/playlists
+  - ./data:/data
   - /etc/localtime:/etc/localtime:ro 
   command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/main.liq'
   environment:
@@ -19,9 +19,9 @@ main:
 testing:
   image: moul/liquidsoap
   volumes:
-  - config:/config
-  - playlists:/playlists
-  - data:/data
+  - ./config:/config
+  - ./playlists:/playlists
+  - ./data:/data
   - /etc/localtime:/etc/localtime:ro 
   command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/testing.liq'
   environment:
@@ -38,8 +38,8 @@ testing:
 broadcast:
   image: moul/liquidsoap
   volumes:
-  - config:/config
-  - playlists/failures:/playlists/failures
+  - ./config:/config
+  - ./playlists/failures:/playlists/failures
   - /etc/localtime:/etc/localtime:ro 
   command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/broadcast.liq'
   environment:
@@ -53,7 +53,7 @@ broadcast:
 icecast:
   image: moul/icecast
   volumes:
-  - logs/icecast2:/var/log/icecast2
+  - ./logs/icecast2:/var/log/icecast2
   - /etc/localtime:/etc/localtime:ro 
   environment:
   - ICECAST_SOURCE_PASSWORD
@@ -89,11 +89,11 @@ ftpd:
   - 0.0.0.0:40128:40128
   - 0.0.0.0:40129:40129
   volumes:
-  #- config:/ftp/config
-  - playlists:/ftp/playlists
-  - data:/ftp/data
-  - backup-1and1:/ftp/backup-1and1
-  - ftpd/:/etc/pure-ftpd/config
+  #- ./config:/ftp/config
+  - ./playlists:/ftp/playlists
+  - ./data:/ftp/data
+  - ./backup-1and1:/ftp/backup-1and1
+  - ./ftpd/:/etc/pure-ftpd/config
   - /etc/localtime:/etc/localtime:ro 
   command: /bin/bash -c 'cd /etc/pure-ftpd; rm -f pureftpd.{pdb,passwd}; ln -s config/* .; /usr/sbin/pure-ftpd -c 30 -C 10 -l puredb:/etc/pure-ftpd/pureftpd.pdb -x -E -j -R -d -p 40110:40129'
     
@@ -112,7 +112,7 @@ admin:
   - 12348:80
   volumes:
   - /etc/localtime:/etc/localtime:ro 
-  - admin:/app
+  - ./admin:/app
   links:
   - main
   environment:
@@ -143,7 +143,7 @@ piwikcron:
   entrypoint: /bin/bash
   volumes:
   - /etc/localtime:/etc/localtime:ro 
-  - logs/icecast2:/data/logs/icecast2
+  - ./logs/icecast2:/data/logs/icecast2
   command: -c 'apt-get -y install python; while true; do python /piwik/misc/log-analytics/import_logs.py --show-progress --url=http://$HOSTNAME:12346/piwik/ --idsite=1 --recorders=8 --enable-http-errors --log-format-name=icecast2 --strip-query-string /data/logs/icecast2/access.log --login=admin --password=$PIWIK_PASSWORD; sleep 10; done'
 
 piwikmysql:
@@ -152,7 +152,7 @@ piwikmysql:
   - MYSQL_ROOT_PASSWORD
   volumes:
   - /etc/localtime:/etc/localtime:ro 
-  - mysql:/var/lib/mysql
+  - ./mysql:/var/lib/mysql
 
 dashing:
   image: larrycai/dashing
@@ -161,7 +161,7 @@ dashing:
   command: /bin/bash /run.sh
   volumes:
   - /etc/localtime:/etc/localtime:ro 
-  - dashing:/dashing
+  - ./dashing:/dashing
   links:
   - icecast
   environment:
@@ -171,11 +171,11 @@ dashing:
 jordy:
   image: moul/triplie
   volumes:
-  - jordy:/data
+  - ./jordy:/data
 jordy3000:
   image: moul/triplie
   volumes:
-  - jordy3000:/data
+  - ./jordy3000:/data
   
 feedme:
   build: feedme
@@ -183,7 +183,7 @@ feedme:
 glados:
   build: GLaDOS
   volumes:
-  - GLaDOS/config:/usr/src/app/config
-  - GLaDOS/lib:/usr/src/app/lib
-  - GLaDOS/scripts:/usr/src/app/scripts
-  - GLaDOS/data:/usr/src/app/data
+  - ./GLaDOS/config:/usr/src/app/config
+  - ./GLaDOS/lib:/usr/src/app/lib
+  - ./GLaDOS/scripts:/usr/src/app/scripts
+  - ./GLaDOS/data:/usr/src/app/data
