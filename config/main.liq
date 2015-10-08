@@ -45,51 +45,51 @@ jingles = mksafe(
             )
         )
     )
-songs_reggae = mksafe(
-    audio_to_stereo(
-        rewrite_metadata(
-            [
-                ("title", "$(title) (reggae - radio Salut c'est cool)"),
-                ("comment", "http://www.salutcestcool.com")
-                ],
-            playlist.safe(
-                reload=600,
-                "/playlists/songs/reggae",
-                mode="randomize",reload_mode="rounds"
-                )
-            )
-        )
-    )
-songs_trance = mksafe(
-    audio_to_stereo(
-        rewrite_metadata(
-            [
-                ("title", "$(title) (reggae - radio Salut c'est cool)"),
-                ("comment", "http://www.salutcestcool.com")
-                ],
-            playlist.safe(
-                reload=600,
-                "/playlists/songs/reggae",
-                mode="randomize",reload_mode="rounds"
-                )
-            )
-        )
-    )
-songs_soiree = mksafe(
-    audio_to_stereo(
-        rewrite_metadata(
-            [
-                ("title", "$(title) (soiree - radio Salut c'est cool)"),
-                ("comment", "http://www.salutcestcool.com")
-                ],
-            playlist.safe(
-                reload=600,
-                "/playlists/songs/soiree",
-                mode="randomize",reload_mode="rounds"
-                )
-            )
-        )
-    )
+#songs_reggae = mksafe(
+#    audio_to_stereo(
+#        rewrite_metadata(
+#            [
+#                ("title", "$(title) (reggae - radio Salut c'est cool)"),
+#                ("comment", "http://www.salutcestcool.com")
+#                ],
+#            playlist.safe(
+#                reload=600,
+#                "/playlists/songs/reggae",
+#                mode="randomize",reload_mode="rounds"
+#                )
+#            )
+#        )
+#    )
+#songs_trance = mksafe(
+#    audio_to_stereo(
+#        rewrite_metadata(
+#            [
+#                ("title", "$(title) (reggae - radio Salut c'est cool)"),
+#                ("comment", "http://www.salutcestcool.com")
+#                ],
+#            playlist.safe(
+#                reload=600,
+#                "/playlists/songs/reggae",
+#                mode="randomize",reload_mode="rounds"
+#                )
+#            )
+#        )
+#    )
+#songs_soiree = mksafe(
+#    audio_to_stereo(
+#        rewrite_metadata(
+#            [
+#                ("title", "$(title) (soiree - radio Salut c'est cool)"),
+#                ("comment", "http://www.salutcestcool.com")
+#                ],
+#            playlist.safe(
+#                reload=600,
+#                "/playlists/songs/soiree",
+#                mode="randomize",reload_mode="rounds"
+#                )
+#            )
+#        )
+#    )
 songs_nuit = mksafe(
     audio_to_stereo(
         rewrite_metadata(
@@ -135,21 +135,21 @@ songs_journee = mksafe(
             )
         )
     )
-songs_pluie = mksafe(
-    audio_to_stereo(
-        rewrite_metadata(
-            [
-                ("title", "$(title) (pluie - radio Salut c'est cool)"),
-                ("comment", "http://www.salutcestcool.com")
-                ],
-            playlist.safe(
-                reload=600,
-                "/playlists/songs/pluie",
-                mode="randomize",reload_mode="rounds"
-                )
-            )
-        )
-    )
+#songs_pluie = mksafe(
+#    audio_to_stereo(
+#        rewrite_metadata(
+#            [
+#                ("title", "$(title) (pluie - radio Salut c'est cool)"),
+#                ("comment", "http://www.salutcestcool.com")
+#                ],
+#            playlist.safe(
+#                reload=600,
+#                "/playlists/songs/pluie",
+#                mode="randomize",reload_mode="rounds"
+#                )
+#            )
+#        )
+#    )
 live_scc = audio_to_stereo(
     rewrite_metadata(
         [
@@ -193,24 +193,24 @@ live_guest = audio_to_stereo(
 
 # MIXS
 calendar_mix = switch(track_sensitive=true, [
-        ({ 10h-11h and 1w }, songs_pluie),
+#        ({ 10h-11h and 1w }, songs_pluie),
 
-        ({ 18h-23h and 4w }, songs_soiree ),
-        ({ 18h-23h and 5w }, songs_soiree ),
-        ({ 18h-23h and 6w }, songs_soiree ),
+#        ({ 18h-23h and 4w }, songs_soiree ),
+#        ({ 18h-23h and 5w }, songs_soiree ),
+#        ({ 18h-23h and 6w }, songs_soiree ),
 
-        ({ 23h-23h59m59s and 4w }, songs_nuit ),
+        ({ 21h-23h59m59s and 4w }, songs_nuit ),
         ({ 0h-6h and 5w }, songs_nuit ),
-        ({ 23h-23h59m59s and 5w }, songs_nuit ),
+        ({ 21h-23h59m59s and 5w }, songs_nuit ),
         ({ 0h-6h and 6w }, songs_nuit ),
-        ({ 23h-23h59m59s and 6w }, songs_nuit ),
+        ({ 21h-23h59m59s and 6w }, songs_nuit ),
         ({ 0h-6h and 7w }, songs_nuit ),
 
-        ({ 4h-6h }, songs_trance ),
+#        ({ 4h-6h }, songs_trance ),
 
 #        ({ 6h-8h }, songs_matin ),
 
-        ({ 16h20-17h }, songs_reggae ),
+#        ({ 16h20-17h }, songs_reggae ),
 
         ({ true }, songs_journee)
 ])
