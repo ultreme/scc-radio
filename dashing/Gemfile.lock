@@ -85,5 +85,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  addressable
   dashing
   twitter (>= 5.9.0)

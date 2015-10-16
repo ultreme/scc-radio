@@ -155,11 +155,11 @@ piwikmysql:
   - ./mysql:/var/lib/mysql
 
 dashing:
-  image: larrycai/dashing
+  image: frvi/dashing
   ports:
   - 0.0.0.0:12349:3030
   #command: /bin/bash /run.sh
-  command: /usr/local/bundle/bin/dashing start
+  #command: /usr/local/bundle/bin/dashing start
   volumes:
   - /etc/localtime:/etc/localtime:ro 
   - ./dashing:/dashing
@@ -168,6 +168,7 @@ dashing:
   environment:
   - ICECAST_ADMIN_PASSWORD
   - ADMIN_IFRAME_URL
+  - GEMS=addressable
 
 jordy:
   image: moul/triplie-ng
