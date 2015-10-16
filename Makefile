@@ -25,6 +25,11 @@ ENV ?=			HARBOR_PASSWORD=$(HARBOR_PASSWORD) \
 
 .PHONY: dev re_main re_broadcast re_icecast main broadcast icecast admin piwik piwikmysql dashing ftpd
 
+
+.PHONY: up
+up:
+	$(ENV) docker-compose up -d --no-recreate
+
 dev:	chmod broadcast
 	$(ENV) docker-compose up --no-deps main
 

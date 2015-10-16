@@ -158,7 +158,8 @@ dashing:
   image: larrycai/dashing
   ports:
   - 0.0.0.0:12349:3030
-  command: /bin/bash /run.sh
+  #command: /bin/bash /run.sh
+  command: /usr/local/bundle/bin/dashing start
   volumes:
   - /etc/localtime:/etc/localtime:ro 
   - ./dashing:/dashing
@@ -169,11 +170,11 @@ dashing:
   - ADMIN_IFRAME_URL
 
 jordy:
-  image: moul/triplie
+  image: moul/triplie-ng
   volumes:
   - ./jordy:/data
 jordy3000:
-  image: moul/triplie
+  image: moul/triplie-ng
   volumes:
   - ./jordy3000:/data
   
