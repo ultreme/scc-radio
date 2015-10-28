@@ -55,7 +55,7 @@ input = mksafe(fallback(track_sensitive=false, [ harbor_input, default ]))
 
 
 # NORMALIZE
-input = audio_process(input)
+#input = audio_process(input)
 
 
 # OUTPUTS
