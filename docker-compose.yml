@@ -16,24 +16,24 @@ main:
   - 8022:5002
   - 127.0.0.1:5000:5000
 
-testing:
-  image: moul/liquidsoap
-  volumes:
-  - ./config:/config
-  - ./playlists:/playlists
-  - ./data:/data
-  - /etc/localtime:/etc/localtime:ro 
-  command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/testing.liq'
-  environment:
-  - HARBOR_PASSWORD
-  - LIVE_PASSWORD
-  - ICECAST_SOURCE_PASSWORD
-  links:
-  - icecast
-  ports:
-  - 8023:5001
-  - 8024:5002
-  - 127.0.0.1:5003:5000
+#testing:
+#  image: moul/liquidsoap
+#  volumes:
+#  - ./config:/config
+#  - ./playlists:/playlists
+#  - ./data:/data
+#  - /etc/localtime:/etc/localtime:ro 
+#  command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/testing.liq'
+#  environment:
+#  - HARBOR_PASSWORD
+#  - LIVE_PASSWORD
+#  - ICECAST_SOURCE_PASSWORD
+#  links:
+#  - icecast
+#  ports:
+#  - 8023:5001
+#  - 8024:5002
+#  - 127.0.0.1:5003:5000
 
 broadcast:
   image: moul/liquidsoap
