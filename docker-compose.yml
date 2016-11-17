@@ -63,6 +63,14 @@ icecast:
   ports:
   - 12345:8000
 
+webftp:
+  image: httpd
+  volumes:
+  - ./playlists:/usr/local/apache2/htdocs/playlists
+  - ./trucs:/usr/local/apache2/htdocs/trucs
+  ports:
+  - 12360:80
+
 ftpd:
   image: stilliard/pure-ftpd
   ports:
@@ -92,6 +100,7 @@ ftpd:
   #- ./config:/ftp/config
   - ./playlists:/ftp/playlists
   - ./data:/ftp/data
+  - ./trucs:/ftp/trucs
   - ./backup-1and1:/ftp/backup-1and1
   - ./ftpd/:/etc/pure-ftpd/config
   - /etc/localtime:/etc/localtime:ro 
@@ -118,74 +127,76 @@ admin:
   environment:
   - ICECAST_ADMIN_PASSWORD
 
-piwik:
-  #image: bprodoehl/piwik
-  #image: cbeer/piwik
-  volumes:
-  - /etc/localtime:/etc/localtime:ro 
-  image: marvambass/piwik
-  links:
-  - piwikmysql:mysql
-  ports:
-  - 12346:80
-  - 12347:443
-  environment:
-  - PIWIK_MYSQL_USER=root
-  - PIWIK_PASSWORD
-  - PIWIK_MYSQL_PASSWORD
-  - SITE_URL
+#piwik:
+#  #image: bprodoehl/piwik
+#  #image: cbeer/piwik
+#  volumes:
+#  - /etc/localtime:/etc/localtime:ro 
+#  image: marvambass/piwik
+#  links:
+#  - piwikmysql:mysql
+#  ports:
+#  - 12346:80
+#  - 12347:443
+#  environment:
+#  - PIWIK_MYSQL_USER=root
+#  - PIWIK_PASSWORD
+#  - PIWIK_MYSQL_PASSWORD
+#  - SITE_URL
 
-piwikcron:
-  image: marvambass/piwik
-  environment:
-  - HOSTNAME
-  - PIWIK_PASSWORD
-  entrypoint: /bin/bash
-  volumes:
-  - /etc/localtime:/etc/localtime:ro 
-  - ./logs/icecast2:/data/logs/icecast2
-  command: -c 'apt-get -y install python; while true; do python /piwik/misc/log-analytics/import_logs.py --show-progress --url=http://$HOSTNAME:12346/piwik/ --idsite=1 --recorders=8 --enable-http-errors --log-format-name=icecast2 --strip-query-string /data/logs/icecast2/access.log --login=admin --password=$PIWIK_PASSWORD; sleep 10; done'
+#piwikcron:
+#  image: marvambass/piwik
+#  environment:
+#  - HOSTNAME
+#  - PIWIK_PASSWORD
+#  entrypoint: /bin/bash
+#  volumes:
+#  - /etc/localtime:/etc/localtime:ro 
+#  - ./logs/icecast2:/data/logs/icecast2
+#  command: -c 'apt-get -y install python; while true; do python /piwik/misc/log-analytics/import_logs.py --show-progress --url=http://$HOSTNAME:12346/piwik/ --idsite=1 --recorders=8 --enable-http-errors --log-format-name=icecast2 --strip-query-string /data/logs/icecast2/access.log --login=admin --password=$PIWIK_PASSWORD; sleep 10; done'
 
-piwikmysql:
-  image: mysql
-  environment:
-  - MYSQL_ROOT_PASSWORD
-  volumes:
-  - /etc/localtime:/etc/localtime:ro 
-  - ./mysql:/var/lib/mysql
+#piwikmysql:
+#  image: mysql
+#  environment:
+#  - MYSQL_ROOT_PASSWORD
+#  volumes:
+#  - /etc/localtime:/etc/localtime:ro 
+#  - ./mysql:/var/lib/mysql
 
-dashing:
-  image: frvi/dashing
-  ports:
-  - 0.0.0.0:12349:3030
-  #command: /bin/bash /run.sh
-  #command: /usr/local/bundle/bin/dashing start
-  volumes:
-  - /etc/localtime:/etc/localtime:ro 
-  - ./dashing:/dashing
-  links:
-  - icecast
-  environment:
-  - ICECAST_ADMIN_PASSWORD
-  - ADMIN_IFRAME_URL
-  - GEMS=addressable
+#dashing:
+#  image: frvi/dashing
+#  ports:
+#  - 0.0.0.0:12349:3030
+#  #command: /bin/bash /run.sh
+#  #command: /usr/local/bundle/bin/dashing start
+#  volumes:
+#  - /etc/localtime:/etc/localtime:ro 
+##  - ./dashing:/dashing
+#  - ./dashing/config.ru:/config/config.ru
+#  - ./dashing/jobs:/jobs
+#  - ./dashing/dashboards:/dashboards
+#  - ./dashing/widgets:/widgets
+#  links:
+#  - icecast
+#  environment:
+#  - ICECAST_ADMIN_PASSWORD
+#  - ADMIN_IFRAME_URL
+#  - GEMS=addressable
 
-jordy:
-  image: moul/triplie-ng
-  volumes:
-  - ./jordy:/data
-jordy3000:
-  image: moul/triplie-ng
-  volumes:
-  - ./jordy3000:/data
+#jordy:
+#  image: moul/triplie-ng
+#  volumes:
+#  - ./jordy:/data
+#jordy3000:
+#  image: moul/triplie-ng
+#  volumes:
+#  - ./jordy3000:/data
   
-feedme:
-  build: feedme
-
-glados:
-  build: GLaDOS
-  volumes:
-  - ./GLaDOS/config:/usr/src/app/config
-  - ./GLaDOS/lib:/usr/src/app/lib
-  - ./GLaDOS/scripts:/usr/src/app/scripts
-  - ./GLaDOS/data:/usr/src/app/data
+#glados:
+#  restart: always
+#  build: GLaDOS
+#  volumes:
+#  - ./GLaDOS/config:/usr/src/app/config
+#  - ./GLaDOS/lib:/usr/src/app/lib
+#  - ./GLaDOS/scripts:/usr/src/app/scripts
+#  - ./GLaDOS/data:/usr/src/app/data

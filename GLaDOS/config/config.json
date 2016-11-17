@@ -4,6 +4,7 @@
     "callsign": "!",
     "scripts": [
         "morse",
+	"flip",
         "stats",
         "quiz",
         "weather",
