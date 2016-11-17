@@ -199,11 +199,11 @@ calendar_mix = switch(track_sensitive=true, [
 #        ({ 18h-23h and 5w }, songs_soiree ),
 #        ({ 18h-23h and 6w }, songs_soiree ),
 
-        ({ 21h-23h59m59s and 4w }, songs_nuit ),
+        ({ 23h-23h59m59s and 4w }, songs_nuit ),
         ({ 0h-6h and 5w }, songs_nuit ),
-        ({ 21h-23h59m59s and 5w }, songs_nuit ),
+        ({ 23h-23h59m59s and 5w }, songs_nuit ),
         ({ 0h-6h and 6w }, songs_nuit ),
-        ({ 21h-23h59m59s and 6w }, songs_nuit ),
+        ({ 23h-23h59m59s and 6w }, songs_nuit ),
         ({ 0h-6h and 7w }, songs_nuit ),
 
 #        ({ 4h-6h }, songs_trance ),
