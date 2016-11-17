@@ -10,7 +10,7 @@ def fade(jingles,s)
   start_next = 2.
   j = random(
       id="jrand",
-      weights=[1,3],
+      weights=[1,1],
       [jingles, blank(id="bbb",duration=1.)])
   def fader(from,to)
     from = fade.out(duration=fade_out,from)
