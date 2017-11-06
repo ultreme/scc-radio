@@ -1,202 +1,225 @@
-main:
-  image: moul/liquidsoap
-  volumes:
-  - ./config:/config
-  - ./playlists:/playlists
-  - ./data:/data
-  - /etc/localtime:/etc/localtime:ro 
-  command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/main.liq'
-  environment:
-  - HARBOR_PASSWORD
-  - LIVE_PASSWORD
-  links:
-  - broadcast
-  ports:
-  - 8021:5001
-  - 8022:5002
-  - 127.0.0.1:5000:5000
+version: '2'
 
-#testing:
-#  image: moul/liquidsoap
-#  volumes:
-#  - ./config:/config
-#  - ./playlists:/playlists
-#  - ./data:/data
-#  - /etc/localtime:/etc/localtime:ro 
-#  command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/testing.liq'
-#  environment:
-#  - HARBOR_PASSWORD
-#  - LIVE_PASSWORD
-#  - ICECAST_SOURCE_PASSWORD
-#  links:
-#  - icecast
-#  ports:
-#  - 8023:5001
-#  - 8024:5002
-#  - 127.0.0.1:5003:5000
-
-broadcast:
-  image: moul/liquidsoap
-  volumes:
-  - ./config:/config
-  - ./playlists/failures:/playlists/failures
-  - /etc/localtime:/etc/localtime:ro 
-  command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/broadcast.liq'
-  environment:
-  - HARBOR_PASSWORD
-  - ICECAST_SOURCE_PASSWORD
-  links:
-  - icecast
-  ports:
-  - 5001
-
-icecast:
-  image: moul/icecast
-  volumes:
-  - ./logs/icecast2:/var/log/icecast2
-  - /etc/localtime:/etc/localtime:ro 
-  environment:
-  - ICECAST_SOURCE_PASSWORD
-  - ICECAST_ADMIN_PASSWORD
-  - ICECAST_PASSWORD
-  - ICECAST_RELAY_PASSWORD
-  ports:
-  - 12345:8000
-
-webftp:
-  image: httpd
-  volumes:
-  - ./playlists:/usr/local/apache2/htdocs/playlists
-  - ./trucs:/usr/local/apache2/htdocs/trucs
-  ports:
-  - 12360:80
-
-ftpd:
-  image: stilliard/pure-ftpd
-  ports:
-  - 0.0.0.0:21:21
-  # passive mode
-  - 0.0.0.0:40110:40110
-  - 0.0.0.0:40111:40111
-  - 0.0.0.0:40112:40112
-  - 0.0.0.0:40113:40113
-  - 0.0.0.0:40114:40114
-  - 0.0.0.0:40115:40115
-  - 0.0.0.0:40116:40116
-  - 0.0.0.0:40117:40117
-  - 0.0.0.0:40118:40118
-  - 0.0.0.0:40119:40119
-  - 0.0.0.0:40120:40120
-  - 0.0.0.0:40121:40121
-  - 0.0.0.0:40122:40122
-  - 0.0.0.0:40123:40123
-  - 0.0.0.0:40124:40124
-  - 0.0.0.0:40125:40125
-  - 0.0.0.0:40126:40126
-  - 0.0.0.0:40127:40127
-  - 0.0.0.0:40128:40128
-  - 0.0.0.0:40129:40129
-  volumes:
-  #- ./config:/ftp/config
-  - ./playlists:/ftp/playlists
-  - ./data:/ftp/data
-  - ./trucs:/ftp/trucs
-  - ./backup-1and1:/ftp/backup-1and1
-  - ./ftpd/:/etc/pure-ftpd/config
-  - /etc/localtime:/etc/localtime:ro 
-  command: /bin/bash -c 'cd /etc/pure-ftpd; rm -f pureftpd.{pdb,passwd}; ln -s config/* .; /usr/sbin/pure-ftpd -c 30 -C 10 -l puredb:/etc/pure-ftpd/pureftpd.pdb -x -E -j -R -d -p 40110:40129'
-    
-#btsync:
-#  image: shykes/bittorrentsync
-#  volumes:
-#  - btsync:/btsync
-#  - playlists:/data
-#  ports:
-#  - 8889:8889
-#  - 55556:55556
-
-admin:
-  image: tutum/apache-php
-  ports:
-  - 12348:80
-  volumes:
-  - /etc/localtime:/etc/localtime:ro 
-  - ./admin:/app
-  links:
-  - main
-  environment:
-  - ICECAST_ADMIN_PASSWORD
-
-#piwik:
-#  #image: bprodoehl/piwik
-#  #image: cbeer/piwik
-#  volumes:
-#  - /etc/localtime:/etc/localtime:ro 
-#  image: marvambass/piwik
-#  links:
-#  - piwikmysql:mysql
-#  ports:
-#  - 12346:80
-#  - 12347:443
-#  environment:
-#  - PIWIK_MYSQL_USER=root
-#  - PIWIK_PASSWORD
-#  - PIWIK_MYSQL_PASSWORD
-#  - SITE_URL
-
-#piwikcron:
-#  image: marvambass/piwik
-#  environment:
-#  - HOSTNAME
-#  - PIWIK_PASSWORD
-#  entrypoint: /bin/bash
-#  volumes:
-#  - /etc/localtime:/etc/localtime:ro 
-#  - ./logs/icecast2:/data/logs/icecast2
-#  command: -c 'apt-get -y install python; while true; do python /piwik/misc/log-analytics/import_logs.py --show-progress --url=http://$HOSTNAME:12346/piwik/ --idsite=1 --recorders=8 --enable-http-errors --log-format-name=icecast2 --strip-query-string /data/logs/icecast2/access.log --login=admin --password=$PIWIK_PASSWORD; sleep 10; done'
-
-#piwikmysql:
-#  image: mysql
-#  environment:
-#  - MYSQL_ROOT_PASSWORD
-#  volumes:
-#  - /etc/localtime:/etc/localtime:ro 
-#  - ./mysql:/var/lib/mysql
-
-#dashing:
-#  image: frvi/dashing
-#  ports:
-#  - 0.0.0.0:12349:3030
-#  #command: /bin/bash /run.sh
-#  #command: /usr/local/bundle/bin/dashing start
-#  volumes:
-#  - /etc/localtime:/etc/localtime:ro 
-##  - ./dashing:/dashing
-#  - ./dashing/config.ru:/config/config.ru
-#  - ./dashing/jobs:/jobs
-#  - ./dashing/dashboards:/dashboards
-#  - ./dashing/widgets:/widgets
-#  links:
-#  - icecast
-#  environment:
-#  - ICECAST_ADMIN_PASSWORD
-#  - ADMIN_IFRAME_URL
-#  - GEMS=addressable
-
-#jordy:
-#  image: moul/triplie-ng
-#  volumes:
-#  - ./jordy:/data
-#jordy3000:
-#  image: moul/triplie-ng
-#  volumes:
-#  - ./jordy3000:/data
+services:
+  main:
+    image: moul/liquidsoap
+    volumes:
+      - ./config:/config
+      - ./playlists:/playlists
+      - ./data:/data
+      - /etc/localtime:/etc/localtime:ro 
+    command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/main.liq'
+    environment:
+      - HARBOR_PASSWORD
+      - LIVE_PASSWORD
+    links:
+      - broadcast
+    ports:
+      - 8021:5001
+      - 8022:5002
+      - 127.0.0.1:5000:5000
   
-#glados:
-#  restart: always
-#  build: GLaDOS
-#  volumes:
-#  - ./GLaDOS/config:/usr/src/app/config
-#  - ./GLaDOS/lib:/usr/src/app/lib
-#  - ./GLaDOS/scripts:/usr/src/app/scripts
-#  - ./GLaDOS/data:/usr/src/app/data
+  #testing:
+  #  image: moul/liquidsoap
+  #  volumes:
+  #  - ./config:/config
+  #  - ./playlists:/playlists
+  #  - ./data:/data
+  #  - /etc/localtime:/etc/localtime:ro 
+  #  command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/testing.liq'
+  #  environment:
+  #  - HARBOR_PASSWORD
+  #  - LIVE_PASSWORD
+  #  - ICECAST_SOURCE_PASSWORD
+  #  links:
+  #  - icecast
+  #  ports:
+  #  - 8023:5001
+  #  - 8024:5002
+  #  - 127.0.0.1:5003:5000
+  
+  broadcast:
+    image: moul/liquidsoap
+    volumes:
+      - ./config:/config
+      - ./playlists/failures:/playlists/failures
+      - /etc/localtime:/etc/localtime:ro 
+    command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/broadcast.liq'
+    environment:
+      - HARBOR_PASSWORD
+      - ICECAST_SOURCE_PASSWORD
+    links:
+      - icecast
+    ports:
+      - 5001
+  
+  icecast:
+    image: moul/icecast
+    volumes:
+      - ./logs/icecast2:/var/log/icecast2
+      - /etc/localtime:/etc/localtime:ro 
+    networks:
+      - default
+      - service-proxy
+    environment:
+      - VIRTUAL_HOST=radio.casse-tete.solutions
+      - VIRTUAL_PORT=8000
+    environment:
+      - ICECAST_SOURCE_PASSWORD
+      - ICECAST_ADMIN_PASSWORD
+      - ICECAST_PASSWORD
+      - ICECAST_RELAY_PASSWORD
+    ports:
+      - 8000
+  
+  webftp:
+    image: httpd
+    volumes:
+      - ./playlists:/usr/local/apache2/htdocs/playlists
+      - ./trucs:/usr/local/apache2/htdocs/trucs
+    networks:
+      - default
+      - service-proxy
+    environment:
+      - VIRTUAL_HOST=radio-ftp.casse-tete.solutions
+      - VIRTUAL_PORT=80
+      
+  ftpd:
+    image: stilliard/pure-ftpd
+    ports:
+      - 0.0.0.0:21:21
+      # passive mode
+      - 0.0.0.0:40110:40110
+      - 0.0.0.0:40111:40111
+      - 0.0.0.0:40112:40112
+      - 0.0.0.0:40113:40113
+      - 0.0.0.0:40114:40114
+      - 0.0.0.0:40115:40115
+      - 0.0.0.0:40116:40116
+      - 0.0.0.0:40117:40117
+      - 0.0.0.0:40118:40118
+      - 0.0.0.0:40119:40119
+      - 0.0.0.0:40120:40120
+      - 0.0.0.0:40121:40121
+      - 0.0.0.0:40122:40122
+      - 0.0.0.0:40123:40123
+      - 0.0.0.0:40124:40124
+      - 0.0.0.0:40125:40125
+      - 0.0.0.0:40126:40126
+      - 0.0.0.0:40127:40127
+      - 0.0.0.0:40128:40128
+      - 0.0.0.0:40129:40129
+    volumes:
+      #- ./config:/ftp/config
+      - ./playlists:/ftp/playlists
+      - ./data:/ftp/data
+      - ./trucs:/ftp/trucs
+      - ./backup-1and1:/ftp/backup-1and1
+      - ./ftpd/:/etc/pure-ftpd/config
+      - /etc/localtime:/etc/localtime:ro 
+    command: /bin/bash -c 'cd /etc/pure-ftpd; rm -f pureftpd.{pdb,passwd}; ln -s config/* .; /usr/sbin/pure-ftpd -c 30   -C 10 -l puredb:/etc/pure-ftpd/pureftpd.pdb -x -E -j -R -d -p 40110:40129'
+      
+  #btsync:
+  #  image: shykes/bittorrentsync
+  #  volumes:
+  #  - btsync:/btsync
+  #  - playlists:/data
+  #  ports:
+  #  - 8889:8889
+  #  - 55556:55556
+  
+  admin:
+    image: tutum/apache-php
+    ports:
+      - 80
+    volumes:
+      - /etc/localtime:/etc/localtime:ro 
+      - ./admin:/app
+    networks:
+      - default
+      - service-proxy
+    environment:
+      - VIRTUAL_HOST=radio-admin.casse-tete.solutions
+      - VIRTUAL_PORT=80
+    links:
+      - main
+    environment:
+      - ICECAST_ADMIN_PASSWORD
+  
+  #piwik:
+  #  #image: bprodoehl/piwik
+  #  #image: cbeer/piwik
+  #  volumes:
+  #  - /etc/localtime:/etc/localtime:ro 
+  #  image: marvambass/piwik
+  #  links:
+  #  - piwikmysql:mysql
+  #  ports:
+  #  - 12346:80
+  #  - 12347:443
+  #  environment:
+  #  - PIWIK_MYSQL_USER=root
+  #  - PIWIK_PASSWORD
+  #  - PIWIK_MYSQL_PASSWORD
+  #  - SITE_URL
+  
+  #piwikcron:
+  #  image: marvambass/piwik
+  #  environment:
+  #  - HOSTNAME
+  #  - PIWIK_PASSWORD
+  #  entrypoint: /bin/bash
+  #  volumes:
+  #  - /etc/localtime:/etc/localtime:ro 
+  #  - ./logs/icecast2:/data/logs/icecast2
+  #  command: -c 'apt-get -y install python; while true; do python /piwik/misc/log-analytics/import_logs.py --show-pro  gress --url=http://$HOSTNAME:12346/piwik/ --idsite=1 --recorders=8 --enable-http-errors --log-format-name=icecast2 -  -strip-query-string /data/logs/icecast2/access.log --login=admin --password=$PIWIK_PASSWORD; sleep 10; done'
+  
+  #piwikmysql:
+  #  image: mysql
+  #  environment:
+  #  - MYSQL_ROOT_PASSWORD
+  #  volumes:
+  #  - /etc/localtime:/etc/localtime:ro 
+  #  - ./mysql:/var/lib/mysql
+  
+  #dashing:
+  #  image: frvi/dashing
+  #  ports:
+  #  - 0.0.0.0:12349:3030
+  #  #command: /bin/bash /run.sh
+  #  #command: /usr/local/bundle/bin/dashing start
+  #  volumes:
+  #  - /etc/localtime:/etc/localtime:ro 
+  ##  - ./dashing:/dashing
+  #  - ./dashing/config.ru:/config/config.ru
+  #  - ./dashing/jobs:/jobs
+  #  - ./dashing/dashboards:/dashboards
+  #  - ./dashing/widgets:/widgets
+  #  links:
+  #  - icecast
+  #  environment:
+  #  - ICECAST_ADMIN_PASSWORD
+  #  - ADMIN_IFRAME_URL
+  #  - GEMS=addressable
+  
+  #jordy:
+  #  image: moul/triplie-ng
+  #  volumes:
+  #  - ./jordy:/data
+  #jordy3000:
+  #  image: moul/triplie-ng
+  #  volumes:
+  #  - ./jordy3000:/data
+    
+  #glados:
+  #  restart: always
+  #  build: GLaDOS
+  #  volumes:
+  #  - ./GLaDOS/config:/usr/src/app/config
+  #  - ./GLaDOS/lib:/usr/src/app/lib
+  #  - ./GLaDOS/scripts:/usr/src/app/scripts
+  #  - ./GLaDOS/data:/usr/src/app/data
+
+networks:
+  service-proxy:
+    external: true
