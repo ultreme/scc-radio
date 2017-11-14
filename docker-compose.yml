@@ -91,7 +91,7 @@ services:
   ftpd:
     image: stilliard/pure-ftpd
     ports:
-      - 0.0.0.0:21:666
+      - 0.0.0.0:666:21
       # passive mode
       - 0.0.0.0:40110:40110
       - 0.0.0.0:40111:40111
