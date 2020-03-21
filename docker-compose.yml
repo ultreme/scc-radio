@@ -14,6 +14,8 @@ services:
       - LIVE_PASSWORD
       - BROADCAST_PORT_5001_TCP_ADDR=broadcast
       - BROADCAST_PORT_5001_TCP_PORT=5001
+      - BROADCAST_PORT_5003_TCP_ADDR=broadcast
+      - BROADCAST_PORT_5003_TCP_PORT=5003
     links:
       - broadcast
     ports:
@@ -56,6 +58,7 @@ services:
       - icecast
     ports:
       - 5001
+      - 5003
   
   icecast:
     image: moul/icecast

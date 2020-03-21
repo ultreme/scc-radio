@@ -221,23 +221,33 @@ mix = add([mix, switch([({0m0s}, clock)])])
 #mix = add([mix, amplify(5., override="replay_gain", live)])
 #mix = fallback(track_sensitive=true, transitions=[custofade], [ mix ])
 #mix = fallback(track_sensitive=false, [multi_live,mix])
-mix = fallback(track_sensitive=false, [live_scc, live_guest, mix])
-mix = store_metadata(size=20,id="history",mix)
+mix_with_live = fallback(track_sensitive=false, [live_scc, live_guest, mix])
+mix_with_live = store_metadata(size=20,id="history",mix_with_live)
 def feedback(metadata)
    system("echo "^ quote(metadata["artist"] ^" - "^ metadata["title"]) ^" > /data/latest.txt")
    system("echo "^ quote(metadata["artist"] ^" - "^ metadata["title"]) ^" >> /data/history.txt")
 end
-mix = on_metadata(feedback, mix)
+mix_with_live = on_metadata(feedback, mix_with_live)
 
 
 # OUTPUTS
-mix = mksafe(mix)
+mix_with_live = mksafe(mix_with_live)
 output.icecast(
     password=my_getenv("HARBOR_PASSWORD"),
     host=my_getenv("BROADCAST_PORT_5001_TCP_ADDR"),
     port=int_of_string(my_getenv("BROADCAST_PORT_5001_TCP_PORT")),
     %wav,
     mount="rscc.main",
+    mix_with_live
+    )
+    
+mix = mksafe(mix)
+output.icecast(
+    password=my_getenv("HARBOR_PASSWORD"),
+    host=my_getenv("BROADCAST_PORT_5003_TCP_ADDR"),
+    port=int_of_string(my_getenv("BROADCAST_PORT_5003_TCP_PORT")),
+    %wav,
+    mount="rscc.background",
     mix
     )
 

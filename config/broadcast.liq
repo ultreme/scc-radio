@@ -53,6 +53,9 @@ default = mksafe(
 harbor_input = input.harbor("rscc.main", port=5001, password=my_getenv("HARBOR_PASSWORD"))
 input = mksafe(fallback(track_sensitive=false, [ harbor_input, default ]))
 
+harbor_input2 = input.harbor("rscc.background", port=5003, password=my_getenv("HARBOR_PASSWORD"))
+input2 = mksafe(fallback(track_sensitive=false, [ harbor_input2, default ]))
+
 
 # NORMALIZE
 #input = audio_process(input)
@@ -60,10 +63,11 @@ input = mksafe(fallback(track_sensitive=false, [ harbor_input, default ]))
 
 # OUTPUTS
 outputs(%mp3(bitrate=64), mount="/salut-radio-64.mp3", input)
-outputs(%mp3(bitrate=128), mount="/salut-radio-128.mp3", input)
-outputs(%mp3(bitrate=160), mount="/salut-radio-160.mp3", input)
+#outputs(%mp3(bitrate=128), mount="/salut-radio-128.mp3", input)
+#outputs(%mp3(bitrate=160), mount="/salut-radio-160.mp3", input)
 outputs(%mp3(bitrate=192), mount="/salut-radio-192.mp3", input)
-outputs(%aac(bitrate=128), mount="/salut-radio-128.aac", input)
-outputs(%aac(bitrate=160), mount="/salut-radio-160.aac", input)
+#outputs(%aac(bitrate=128), mount="/salut-radio-128.aac", input)
+#outputs(%aac(bitrate=160), mount="/salut-radio-160.aac", input)
 outputs(%aac(bitrate=192), mount="/salut-radio-192.aac", input)
+outputs(%aac(bitrate=192), mount="/bg-192.aac", input2)
 outputs(%vorbis, mount="/salut-radio.ogg", input)
