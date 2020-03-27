@@ -153,7 +153,7 @@ songs_journee = mksafe(
 live_scc = audio_to_stereo(
     rewrite_metadata(
         [
-            ("title", "$(title) (LIVE de SCC - radio Salut c'est cool)"),
+            ("title", "LIVE"),
             ("comment", "http://www.salutcestcool.com")
             ],
         stretch(
@@ -172,7 +172,7 @@ live_scc = audio_to_stereo(
 live_guest = audio_to_stereo(
     rewrite_metadata(
         [
-            ("title", "$(title) (LIVE de copains - radio Salut c'est cool)"),
+            ("title", "LIVE"),
             ("comment", "http://www.salutcestcool.com")
             ],
         stretch(
@@ -221,14 +221,15 @@ mix = add([mix, switch([({0m0s}, clock)])])
 #mix = add([mix, amplify(5., override="replay_gain", live)])
 #mix = fallback(track_sensitive=true, transitions=[custofade], [ mix ])
 #mix = fallback(track_sensitive=false, [multi_live,mix])
-mix_with_live = fallback(track_sensitive=false, [live_scc, live_guest, mix])
-mix_with_live = store_metadata(size=20,id="history",mix_with_live)
+mix = store_metadata(size=20,id="history",mix)
+
 def feedback(metadata)
    system("echo "^ quote(metadata["artist"] ^" - "^ metadata["title"]) ^" > /data/latest.txt")
    system("echo "^ quote(metadata["artist"] ^" - "^ metadata["title"]) ^" >> /data/history.txt")
 end
-mix_with_live = on_metadata(feedback, mix_with_live)
+mix = on_metadata(feedback, mix)
 
+mix_with_live = fallback(track_sensitive=false, [live_scc, live_guest, mix])
 
 # OUTPUTS
 mix_with_live = mksafe(mix_with_live)
