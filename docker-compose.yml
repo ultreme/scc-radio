@@ -16,6 +16,10 @@ services:
       - BROADCAST_PORT_5001_TCP_PORT=5001
       - BROADCAST_PORT_5003_TCP_ADDR=broadcast
       - BROADCAST_PORT_5003_TCP_PORT=5003
+      - BROADCAST_PORT_5005_TCP_ADDR=broadcast
+      - BROADCAST_PORT_5005_TCP_PORT=5005
+      - BROADCAST_PORT_5007_TCP_ADDR=broadcast
+      - BROADCAST_PORT_5007_TCP_PORT=5007
     links:
       - broadcast
     ports:
@@ -59,6 +63,8 @@ services:
     ports:
       - 5001
       - 5003
+      - 5005
+      - 5007
   
   icecast:
     image: moul/icecast
@@ -83,6 +89,7 @@ services:
     image: httpd
     volumes:
       - ./playlists:/usr/local/apache2/htdocs/playlists
+      - ./playlists/robots.txt:/usr/local/apache2/htdocs/robots.txt
       - ./trucs:/usr/local/apache2/htdocs/trucs
     networks:
       - default
