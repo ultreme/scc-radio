@@ -91,6 +91,7 @@ services:
       - ./playlists:/usr/local/apache2/htdocs/playlists
       - ./playlists/robots.txt:/usr/local/apache2/htdocs/robots.txt
       - ./trucs:/usr/local/apache2/htdocs/trucs
+      - ../gajeb/playlists:/usr/local/apache2/htdocs/radio-gajeb
     networks:
       - default
       - service-proxy
@@ -130,7 +131,8 @@ services:
       - ./trucs:/ftp/trucs
       - ./backup-1and1:/ftp/backup-1and1
       - ./ftpd/:/etc/pure-ftpd/config
-      - /etc/localtime:/etc/localtime:ro 
+      - /etc/localtime:/etc/localtime:ro
+      - ../gajeb/playlists:/ftp/radio-gajeb
     command: /bin/bash -c 'cd /etc/pure-ftpd; rm -f pureftpd.{pdb,passwd}; ln -s config/* .; /usr/sbin/pure-ftpd -c 30   -C 10 -l puredb:/etc/pure-ftpd/pureftpd.pdb -x -E -j -R -d -p 40110:40129'
       
   #btsync:
