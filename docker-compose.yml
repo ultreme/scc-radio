@@ -7,7 +7,7 @@ services:
       - ./config:/config
       - ./playlists:/playlists
       - ./data:/data
-      - /etc/localtime:/etc/localtime:ro 
+      - /etc/localtime:/etc/localtime:ro
     command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/main.liq'
     environment:
       - HARBOR_PASSWORD
@@ -25,15 +25,15 @@ services:
     ports:
       - 8021:5001
       - 8022:5002
-      - 127.0.0.1:5000:5000
-  
+      - 127.0.0.1:15000:5000
+
   #testing:
   #  image: moul/liquidsoap
   #  volumes:
   #  - ./config:/config
   #  - ./playlists:/playlists
   #  - ./data:/data
-  #  - /etc/localtime:/etc/localtime:ro 
+  #  - /etc/localtime:/etc/localtime:ro
   #  command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/testing.liq'
   #  environment:
   #  - HARBOR_PASSWORD
@@ -45,13 +45,13 @@ services:
   #  - 8023:5001
   #  - 8024:5002
   #  - 127.0.0.1:5003:5000
-  
+
   broadcast:
     image: moul/liquidsoap
     volumes:
       - ./config:/config
       - ./playlists/failures:/playlists/failures
-      - /etc/localtime:/etc/localtime:ro 
+      - /etc/localtime:/etc/localtime:ro
     command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/broadcast.liq'
     environment:
       - HARBOR_PASSWORD
@@ -65,12 +65,12 @@ services:
       - 5003
       - 5005
       - 5007
-  
+
   icecast:
     image: moul/icecast
     volumes:
       - ./logs/icecast2:/var/log/icecast2
-      - /etc/localtime:/etc/localtime:ro 
+      - /etc/localtime:/etc/localtime:ro
     networks:
       - default
       - service-proxy
@@ -84,7 +84,7 @@ services:
     ports:
       - 8000
     restart: always
-  
+
   webftp:
     image: httpd
     volumes:
@@ -98,7 +98,7 @@ services:
     environment:
       - VIRTUAL_HOST=radio-ftp.casse-tete.solutions
       - VIRTUAL_PORT=80
-      
+
   ftpd:
     image: stilliard/pure-ftpd
     ports:
@@ -134,7 +134,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ../gajeb/playlists:/ftp/radio-gajeb
     command: /bin/bash -c 'cd /etc/pure-ftpd; rm -f pureftpd.{pdb,passwd}; ln -s config/* .; /usr/sbin/pure-ftpd -c 30   -C 10 -l puredb:/etc/pure-ftpd/pureftpd.pdb -x -E -j -R -d -p 40110:40129'
-      
+
   #btsync:
   #  image: shykes/bittorrentsync
   #  volumes:
@@ -143,13 +143,13 @@ services:
   #  ports:
   #  - 8889:8889
   #  - 55556:55556
-  
+
   admin:
     image: tutum/apache-php
     ports:
       - 80
     volumes:
-      - /etc/localtime:/etc/localtime:ro 
+      - /etc/localtime:/etc/localtime:ro
       - ./admin:/app
     networks:
       - default
@@ -161,12 +161,12 @@ services:
       - MAIN_PORT_5000_TCP=tcp://main:5000
     links:
       - main
-  
+
   #piwik:
   #  #image: bprodoehl/piwik
   #  #image: cbeer/piwik
   #  volumes:
-  #  - /etc/localtime:/etc/localtime:ro 
+  #  - /etc/localtime:/etc/localtime:ro
   #  image: marvambass/piwik
   #  links:
   #  - piwikmysql:mysql
@@ -178,7 +178,7 @@ services:
   #  - PIWIK_PASSWORD
   #  - PIWIK_MYSQL_PASSWORD
   #  - SITE_URL
-  
+
   #piwikcron:
   #  image: marvambass/piwik
   #  environment:
@@ -186,18 +186,18 @@ services:
   #  - PIWIK_PASSWORD
   #  entrypoint: /bin/bash
   #  volumes:
-  #  - /etc/localtime:/etc/localtime:ro 
+  #  - /etc/localtime:/etc/localtime:ro
   #  - ./logs/icecast2:/data/logs/icecast2
   #  command: -c 'apt-get -y install python; while true; do python /piwik/misc/log-analytics/import_logs.py --show-pro  gress --url=http://$HOSTNAME:12346/piwik/ --idsite=1 --recorders=8 --enable-http-errors --log-format-name=icecast2 -  -strip-query-string /data/logs/icecast2/access.log --login=admin --password=$PIWIK_PASSWORD; sleep 10; done'
-  
+
   #piwikmysql:
   #  image: mysql
   #  environment:
   #  - MYSQL_ROOT_PASSWORD
   #  volumes:
-  #  - /etc/localtime:/etc/localtime:ro 
+  #  - /etc/localtime:/etc/localtime:ro
   #  - ./mysql:/var/lib/mysql
-  
+
   #dashing:
   #  image: frvi/dashing
   #  ports:
@@ -205,7 +205,7 @@ services:
   #  #command: /bin/bash /run.sh
   #  #command: /usr/local/bundle/bin/dashing start
   #  volumes:
-  #  - /etc/localtime:/etc/localtime:ro 
+  #  - /etc/localtime:/etc/localtime:ro
   ##  - ./dashing:/dashing
   #  - ./dashing/config.ru:/config/config.ru
   #  - ./dashing/jobs:/jobs
@@ -217,7 +217,7 @@ services:
   #  - ICECAST_ADMIN_PASSWORD
   #  - ADMIN_IFRAME_URL
   #  - GEMS=addressable
-  
+
   #jordy:
   #  image: moul/triplie-ng
   #  volumes:
@@ -226,7 +226,7 @@ services:
   #  image: moul/triplie-ng
   #  volumes:
   #  - ./jordy3000:/data
-    
+
   #glados:
   #  restart: always
   #  build: GLaDOS

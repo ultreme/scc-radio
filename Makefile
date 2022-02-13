@@ -8,7 +8,7 @@ MYSQL_PASSWORD  ?=	secure
 PIWIK_PASSWORD  ?=	secure
 HOSTNAME	?=	$(shell hostname -f)
 1AND1_FTP	?=	ftp://user:pass@host
-ADMIN_IFRAME_URL ?=	http://$(shell ifconfig eth0 | grep inet\  | cut -d: -f2 | cut -d\  -f1):12348/admin.php?auth=$(ADMIN_PASSWORD)
+ADMIN_IFRAME_URL ?=	http://$(shell ifconfig eno1 | grep inet\  | cut -d: -f2 | cut -d\  -f1):12348/admin.php?auth=$(ADMIN_PASSWORD)
 
 ENV ?=			HARBOR_PASSWORD=$(HARBOR_PASSWORD) \
 			LIVE_PASSWORD=$(HARBOR_PASSWORD) \
@@ -29,6 +29,14 @@ ENV ?=			HARBOR_PASSWORD=$(HARBOR_PASSWORD) \
 .PHONY: up
 up:
 	$(ENV) docker-compose up -d --no-recreate
+
+.PHONY: ps
+ps:
+	$(ENV) docker-compose ps
+
+.PHONY: logs
+logs:
+	$(ENV) docker-compose logs --tail=1000 -f
 
 dev:	chmod broadcast
 	$(ENV) docker-compose up --no-deps main
