@@ -1,5 +1,6 @@
 <?php
 
+error_reporting(E_ALL & ~E_NOTICE);
 
 function telnet_send($command) {
   $fp = stream_socket_client($_ENV['MAIN_PORT_5000_TCP'], $errno, $errstr, 5);
@@ -44,12 +45,13 @@ function get_infos() {
 
 function get_metadata() {
   $entries = cache_get('metadata');
+  //var_dump($entries);
   if ($entries) {
     foreach ($entries as $key => $value) {
       $entries[$key] = (array)$value;
     }
   } else {
-    $lines = explode("\n", trim(telnet_send("rscc(dot)main.metadata")));
+    $lines = explode("\n", trim(telnet_send("rscc.main.metadata")));
     $entries_assoc = [];
     $entry_number = 0;
 
@@ -73,6 +75,10 @@ function get_metadata() {
     $entries = array();
     for ($i = 1; $i < sizeof($entries_assoc); $i++) {
       $entry = $entries_assoc[$i];
+      if ($entry["source_tag"] == "jingles") {
+	continue;
+      }
+      // print_r($entry);
       $pos = strrpos($entry['title'], '(');
       $entry['left_title'] = trim(substr($entry['title'], 0, $pos));
       $entry['right_title'] = substr(trim(substr($entry['title'], $pos)), 1, -1);
@@ -101,7 +107,7 @@ function get_metadata() {
       }
       if (empty($entry['full_title'])) {
 	//$entry['full_title'] = 'Morceau sans nom';
-        $entry['full_title'] = basename($entry['filename']);
+        $entry['full_title'] = basename($ebntry['filename']);
       }
       /*if ($entry['live_artist'] == 'scc') {
 	if (empty($entry['full_title'])) {
@@ -110,9 +116,16 @@ function get_metadata() {
 	  $entry['full_title'] = sprintf('salut c\'est cool en live (%s)', $entry['full_title']);
 	}
 	}*/
+      unset($entry["apic"]);
+      unset($entry["priv"]);
+      unset($entry["itunnorm"]);
+      unset($entry["initial_uri"]);
+      unset($entry["filename"]);
+      unset($entry["id3v2_priv.wm/wmcollectionid"]);
       $entries[] = $entry;
     }
 
+    //print_r($entries);
     cache_set('metadata', $entries);
   }
   return $entries;

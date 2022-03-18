@@ -1,27 +1,6 @@
 -include config.mk
 
-ADMIN_PASSWORD	?=	secure
-HARBOR_PASSWORD	?=	secure
-SOURCE_PASSWORD	?=	secure
-RELAY_PASSWORD  ?=	secure
-MYSQL_PASSWORD  ?=	secure
-PIWIK_PASSWORD  ?=	secure
-HOSTNAME	?=	$(shell hostname -f)
-1AND1_FTP	?=	ftp://user:pass@host
-ADMIN_IFRAME_URL ?=	http://$(shell ifconfig eno1 | grep inet\  | cut -d: -f2 | cut -d\  -f1):12348/admin.php?auth=$(ADMIN_PASSWORD)
-
-ENV ?=			HARBOR_PASSWORD=$(HARBOR_PASSWORD) \
-			LIVE_PASSWORD=$(HARBOR_PASSWORD) \
-			ICECAST_SOURCE_PASSWORD=$(SOURCE_PASSWORD) \
-			ICECAST_ADMIN_PASSWORD=$(ADMIN_PASSWORD) \
-			ICECAST_PASSWORD=$(ADMIN_PASSWORD) \
-			ICECAST_RELAY_PASSWORD=$(RELAY_PASSWORD) \
-			MYSQL_ROOT_PASSWORD=$(MYSQL_PASSWORD) \
-			PIWIK_MYSQL_PASSWORD=$(MYSQL_PASSWORD) \
-			PIWIK_PASSWORD=$(PIWIK_PASSWORD) \
-			HOSTNAME=$(HOSTNAME) \
-			SITE_URL=https://$(HOSTNAME):12347 \
-			ADMIN_IFRAME_URL=$(ADMIN_IFRAME_URL)
+ENV ?=
 
 .PHONY: dev re_main re_broadcast re_icecast main broadcast icecast admin piwik piwikmysql dashing ftpd
 
@@ -30,9 +9,9 @@ ENV ?=			HARBOR_PASSWORD=$(HARBOR_PASSWORD) \
 up:
 	$(ENV) docker-compose up -d --no-recreate
 
-.PHONY: ps
-ps:
-	$(ENV) docker-compose ps
+.PHONY: down ps
+down ps:
+	$(ENV) docker-compose $@
 
 .PHONY: logs
 logs:
@@ -41,6 +20,8 @@ logs:
 dev:	chmod broadcast
 	$(ENV) docker-compose up --no-deps main
 
+telnet_main:
+	telnet `docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' scc-radio_main_1` 5000
 
 re_main: broadcast
 	-$(ENV) docker-compose kill main

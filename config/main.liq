@@ -7,7 +7,7 @@
 # CONFIGS
 set("log.file", true)
 set("log.stdout", true)
-set("log.level", 2)
+set("log.level", 3)
 set("server.telnet", true)
 set("server.telnet.port", 5000)
 set("server.telnet.bind_addr", "0.0.0.0")
@@ -23,7 +23,7 @@ clock = mksafe(
         playlist.safe(
             reload=3600,
             "/playlists/singles/",
-            mode="randomize",
+            mode="random",
             reload_mode="rounds"
         )
     )
@@ -40,7 +40,7 @@ jingles = mksafe(
             playlist.safe(
                 reload=1800,
                 "/playlists/jingles",
-                mode="randomize",reload_mode="rounds"
+                mode="random",reload_mode="rounds"
                 )
             )
         )
@@ -100,7 +100,7 @@ songs_nuit = mksafe(
             playlist.safe(
                 reload=600,
                 "/playlists/songs/nuit",
-                mode="randomize",reload_mode="rounds"
+                mode="random",reload_mode="rounds"
                 )
             )
         )
@@ -130,7 +130,7 @@ songs_journee = mksafe(
             playlist.safe(
                 reload=600,
                 "/playlists/songs/journee",
-                mode="randomize",reload_mode="rounds"
+                mode="random",reload_mode="rounds"
                 )
             )
         )
@@ -176,7 +176,7 @@ live_guest = audio_to_stereo(
             ("comment", "http://www.salutcestcool.com")
             ],
         stretch(
-            ratio=interactive.float("test", 1.00005),
+            ratio=interactive.float("test2", 1.00005),
             input.harbor(
                 "rscc.live",
                 id="rscc.live",
@@ -221,16 +221,17 @@ calendar_mix = switch(track_sensitive=true, [
 #mix = fallback(track_sensitive=false, [multi_live,mix])
 
 def feedback(metadata)
-   system("echo "^ quote(metadata["artist"] ^" - "^ metadata["title"]) ^" > /data/latest.txt")
-   system("echo "^ quote(metadata["artist"] ^" - "^ metadata["title"]) ^" >> /data/history.txt")
+   process.run("echo "^ string.quote(metadata["artist"] ^" - "^ metadata["title"]) ^" > /data/latest.txt")
+   process.run("echo "^ string.quote(metadata["artist"] ^" - "^ metadata["title"]) ^" >> /data/history.txt")
 end
 
 # mix salut
 # TODO: mix_salut = fallback(track_sensitive=true, calendar_mix, request.queue(id="request"))
+#calendar_mix.on_metadata(calendar_mix, feedback)
 mix_salut = fade(jingles, calendar_mix)
 mix_salut = add([mix_salut, switch([({0m0s}, clock)])])
-mix_salut = store_metadata(size=20,id="history",mix_salut)
-mix_salut = on_metadata(feedback, mix_salut)
+#mix_salut = store_metadata(size=20,id="history",mix_salut)
+mix_salut.on_metadata(feedback)
 
 # mix salut with live
 mix_salut_with_live = fallback(track_sensitive=false, [live_scc, live_guest, mix_salut])
@@ -242,12 +243,12 @@ mix_journee = songs_journee
 #mix_journee = store_metadata(size=20,id="history_journee",mix_journee)
 #mix_journee = on_metadata(feedback, mix_journee)
 
-## mix nuit
+# mix nuit
 mix_nuit = songs_nuit
 #mix_nuit = fade(jingles, songs_nuit)
 #mix_nuit = add([mix_nuit, switch([({0m0s}, clock)])])
 #mix_nuit = store_metadata(size=20,id="history_nuit",mix_nuit)
-##mix_nuit = on_metadata(feedback, mix_nuit)
+#mix_nuit = on_metadata(feedback, mix_nuit)
 
 # OUTPUTS
 output.icecast(
