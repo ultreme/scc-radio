@@ -23,6 +23,9 @@ dev:	chmod broadcast
 telnet_main:
 	telnet `docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' scc-radio_main_1` 5000
 
+telnet_broadcast:
+	telnet `docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' scc-radio_broadcast_1` 5000
+
 re_main: broadcast
 	-$(ENV) docker-compose kill main
 	-$(ENV) docker-compose rm --force main

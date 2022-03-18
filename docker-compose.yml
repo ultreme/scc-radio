@@ -69,6 +69,7 @@ services:
     links:
       - icecast
     ports:
+      - 127.0.0.1:15001:5000
       - 5001
       - 5003
       - 5005

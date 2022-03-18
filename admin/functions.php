@@ -18,9 +18,16 @@ function telnet_send($command) {
 
 
 function cache_get($name) {
+  if ($_GET["skip-cache"] == "true") {
+    return false;
+  }
   $cache_file = "$name.cache";
   if (file_exists($cache_file) && (filemtime($cache_file) > (time() - 5 ))) {
-    return json_decode(file_get_contents($cache_file));
+    $content = file_get_contents($cache_file);
+    if (strlen($content) < 1) {
+      return false;
+    }
+    return json_decode($content);
   }
   return false;
 }
@@ -91,6 +98,14 @@ function get_metadata() {
 	$entry['mode'] = 'live';
 	$entry['live_artist'] = 'scc';
 	//$entry['artist'] = 'salut c\'est cool';
+      } else if ($entry['title'] == 'LIVE') {
+	$entry['live'] = 1;
+	$entry['mode'] = 'live';
+	$entry['live_artist'] = 'secret';
+	if ($entry['full_title'] == '') {
+	$entry['full_title'] = '📡';
+	}
+	//$entry['artist'] = 'salut c\'est cool';
       } else {
 	$mode = explode(' - ', $entry['right_title']);
 	$entry['live'] = 0;
@@ -107,21 +122,22 @@ function get_metadata() {
       }
       if (empty($entry['full_title'])) {
 	//$entry['full_title'] = 'Morceau sans nom';
-        $entry['full_title'] = basename($ebntry['filename']);
+        $entry['full_title'] = basename($entry['filename']);
+      }
+      if (empty($entry['full_title'])) {
+	$entry['full_title'] = "mystère et boule de gomme";
       }
       /*if ($entry['live_artist'] == 'scc') {
 	if (empty($entry['full_title'])) {
-	  $entry['full_title'] = 'salut c\'est cool en live';
+	$entry['full_title'] = 'salut c\'est cool en live';
 	} else {
-	  $entry['full_title'] = sprintf('salut c\'est cool en live (%s)', $entry['full_title']);
+	$entry['full_title'] = sprintf('salut c\'est cool en live (%s)', $entry['full_title']);
 	}
 	}*/
-      unset($entry["apic"]);
-      unset($entry["priv"]);
-      unset($entry["itunnorm"]);
-      unset($entry["initial_uri"]);
-      unset($entry["filename"]);
-      unset($entry["id3v2_priv.wm/wmcollectionid"]);
+      $allowed = array("comment", "genre", "tbpm", "on_air", "source_tag", "source", "title", "artist", "on_air_timestamp", "left_title", "right_title", "mode", "full_title", "composer", "album", "live", "year", "publisher", "tracknumber", "status", "album_artist");
+      if ($_GET["no_skip_metadata"] != "true") {
+	$entry = array_intersect_key($entry, array_flip($allowed));
+      }
       $entries[] = $entry;
     }
 
@@ -135,15 +151,16 @@ function get_metadata() {
 function cool_print($data, $format) {
   switch ($format) {
   case 'json':
-    echo(json_encode($data));
+    header('Content-Type: application/json; charset=utf-8');
+    echo(json_encode($data, JSON_PRETTY_PRINT));
     break;
   case 'jsonp':
+    header('Content-Type: application/javascript; charset=utf-8');
     printf("%s(%s);", $_GET['callback'], json_encode($data));
     break;
   case 'debug':
-    echo '<pre>';
+    header('Content-Type: text/plain');
     print_r($data);
-    echo '</pre>';
     break;
   }
 }
