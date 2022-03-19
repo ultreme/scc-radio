@@ -2,8 +2,22 @@
 
 error_reporting(E_ALL & ~E_NOTICE);
 
-function telnet_send($command) {
+function main_telnet_send($command) {
   $fp = stream_socket_client($_ENV['MAIN_PORT_5000_TCP'], $errno, $errstr, 5);
+  if (!$fp) {
+    return("<b><u>TELNET FAILURE:</u> $errstr ($errno)</b><br>");
+  }
+  fwrite($fp, "$command\nquit\n");
+  $eat = '';
+  while (!feof($fp)) {
+    $eat .= fgets($fp, 1024);
+  }
+  fclose($fp);
+  return $eat;
+}
+
+function broadcast_telnet_send($command) {
+  $fp = stream_socket_client($_ENV['BROADCAST_PORT_5000_TCP'], $errno, $errstr, 5);
   if (!$fp) {
     return("<b><u>TELNET FAILURE:</u> $errstr ($errno)</b><br>");
   }
@@ -58,7 +72,7 @@ function get_metadata() {
       $entries[$key] = (array)$value;
     }
   } else {
-    $lines = explode("\n", trim(telnet_send("rscc.main.metadata")));
+    $lines = explode("\n", trim(main_telnet_send("rscc.main.metadata")));
     $entries_assoc = [];
     $entry_number = 0;
 
@@ -80,6 +94,7 @@ function get_metadata() {
     }
     $entries_assoc[$entry_number] = $entry;
     $entries = array();
+	$emojis = explode("\n", trim(file_get_contents('emojis.txt')));
     for ($i = 1; $i < sizeof($entries_assoc); $i++) {
       $entry = $entries_assoc[$i];
       if ($entry["source_tag"] == "jingles") {
@@ -102,10 +117,10 @@ function get_metadata() {
 	$entry['live'] = 1;
 	$entry['mode'] = 'live';
 	$entry['live_artist'] = 'secret';
-	if ($entry['full_title'] == '') {
-	$entry['full_title'] = '📡';
-	}
-	//$entry['artist'] = 'salut c\'est cool';
+      if ($entry['full_title'] == '') {
+		$entry['full_title'] = $emojis[array_rand($emojis)];
+      }
+      //$entry['artist'] = 'salut c\'est cool';
       } else {
 	$mode = explode(' - ', $entry['right_title']);
 	$entry['live'] = 0;
@@ -145,6 +160,27 @@ function get_metadata() {
     cache_set('metadata', $entries);
   }
   return $entries;
+}
+
+function get_status() {
+  $data = array();
+  $data['time'] = time();
+
+  $raw = broadcast_telnet_send("input.harbor_0.status");
+  $lines = explode("\n", trim($raw));
+  $entries_assoc = [];
+  $entry_number = 0;
+  
+  foreach ($lines as $line) {
+    if (in_array(trim($line), array('END', 'Bye!'))) {
+      continue;
+    }
+    $line = trim($line);
+    $data['input.harbor_0.status'] = preg_match('/^source client connected from/', $line, $search) == 1;
+  }
+  
+  $data['everything_is_ok'] = $data['input.harbor_0.status'];
+  return $data;
 }
 
 

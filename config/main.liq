@@ -288,7 +288,7 @@ output.icecast(
     mksafe(mix_nuit)
     )
 
-title = '%Y-%m-%d, %H:%M:%S - $(if $(artist), "$(artist)", "Artiste inconnu") - $(if $(title),"$(title)", "Emission inconnue")'
+title = '%Y/%m/%d, %H:%M:%S - $(if $(artist), "$(artist)", "") - $(if $(title),"$(title)", "")'
 output.file(
     %vorbis,
      reopen_on_metadata=false,

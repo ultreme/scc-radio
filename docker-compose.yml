@@ -177,6 +177,7 @@ services:
       - VIRTUAL_PORT=80
       - ICECAST_ADMIN_PASSWORD
       - MAIN_PORT_5000_TCP=tcp://main:5000
+      - BROADCAST_PORT_5000_TCP=tcp://broadcast:5000
     links:
       - main
     restart: always
