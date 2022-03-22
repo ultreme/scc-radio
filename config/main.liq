@@ -237,14 +237,14 @@ mix_salut.on_metadata(feedback)
 mix_salut_with_live = fallback(track_sensitive=false, [live_scc, live_guest, mix_salut])
 
 # mix journee
-mix_journee = songs_journee
+#mix_journee = songs_journee
 #mix_journee = fade(jingles, songs_journee)
 #mix_journee = add([mix_journee, switch([({0m0s}, clock)])])
 #mix_journee = store_metadata(size=20,id="history_journee",mix_journee)
 #mix_journee = on_metadata(feedback, mix_journee)
 
 # mix nuit
-mix_nuit = songs_nuit
+#mix_nuit = songs_nuit
 #mix_nuit = fade(jingles, songs_nuit)
 #mix_nuit = add([mix_nuit, switch([({0m0s}, clock)])])
 #mix_nuit = store_metadata(size=20,id="history_nuit",mix_nuit)
@@ -270,23 +270,23 @@ output.icecast(
     )
 
 
-output.icecast(
-    password=my_getenv("HARBOR_PASSWORD"),
-    host=my_getenv("BROADCAST_PORT_5005_TCP_ADDR"),
-    port=int_of_string(my_getenv("BROADCAST_PORT_5005_TCP_PORT")),
-    %wav,
-    mount="rscc.journee",
-    mksafe(mix_journee)
-    )
+#output.icecast(
+#    password=my_getenv("HARBOR_PASSWORD"),
+#    host=my_getenv("BROADCAST_PORT_5005_TCP_ADDR"),
+#    port=int_of_string(my_getenv("BROADCAST_PORT_5005_TCP_PORT")),
+#    %wav,
+#    mount="rscc.journee",
+#    mksafe(mix_journee)
+#    )
 
-output.icecast(
-    password=my_getenv("HARBOR_PASSWORD"),
-    host=my_getenv("BROADCAST_PORT_5007_TCP_ADDR"),
-    port=int_of_string(my_getenv("BROADCAST_PORT_5007_TCP_PORT")),
-    %wav,
-    mount="rscc.nuit",
-    mksafe(mix_nuit)
-    )
+#output.icecast(
+#    password=my_getenv("HARBOR_PASSWORD"),
+#    host=my_getenv("BROADCAST_PORT_5007_TCP_ADDR"),
+#    port=int_of_string(my_getenv("BROADCAST_PORT_5007_TCP_PORT")),
+#    %wav,
+#    mount="rscc.nuit",
+#    mksafe(mix_nuit)
+#    )
 
 title = '%Y/%m/%d, %H:%M:%S - $(if $(artist), "$(artist)", "") - $(if $(title),"$(title)", "")'
 output.file(

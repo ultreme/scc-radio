@@ -9,6 +9,19 @@ ENV ?=
 up:
 	$(ENV) docker-compose up -d --no-recreate
 
+.PHONY: repair
+repair:
+	(echo 'input.harbor_0.stop'; echo 'quit'; sleep 1) | make -s telnet_broadcast  || true
+	(echo 'input.harbor_1.stop'; echo 'quit'; sleep 1) | make -s telnet_broadcast  || true
+
+.PHONY: auto_repair
+auto_repair:
+	@make curl_icecast | grep -q "Maintenance en cours" && (date; make repair) || true
+
+.PHONY: auto_repair_loop
+auto_repair_loop:
+	while true; do printf "."; make -s auto_repair; sleep 10; done
+
 .PHONY: down ps
 down ps:
 	$(ENV) docker-compose $@
@@ -20,11 +33,17 @@ logs:
 dev:	chmod broadcast
 	$(ENV) docker-compose up --no-deps main
 
+main_skip:
+	printf "rscc.main.remaining\nrscc.main.skip\nquit\n" | make telnet_main
+
 telnet_main:
 	telnet `docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' scc-radio_main_1` 5000
 
 telnet_broadcast:
 	telnet `docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' scc-radio_broadcast_1` 5000
+
+curl_icecast:
+	curl -s http://`docker inspect -f '{{(index .NetworkSettings.Networks "scc-radio_default").IPAddress}}' scc-radio_icecast_1`:8000
 
 re_main: broadcast
 	-$(ENV) docker-compose kill main

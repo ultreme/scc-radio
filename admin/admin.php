@@ -26,7 +26,7 @@ if ($_ENV['ICECAST_ADMIN_PASSWORD'] != $_GET['auth']) {
          echo '<pre>';
          switch ($_REQUEST['action']) {
            case 'NEXT':
-             echo telnet_send("rscc(dot)main.skip");
+             echo main_telnet_send("rscc.main.skip");
            break;
            case 'INFO':
              cool_print(get_infos(), 'debug');
